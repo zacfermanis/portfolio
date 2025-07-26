@@ -1,0 +1,27 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Zac Fermanis's Portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zacfermanis/portfolio.git"
+  },
+  "keywords": [
+    "Zac",
+    "Fermanis",
+    "Portfolio"
+  ],
+  "author": "Zac Fermanis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zacfermanis/portfolio/issues"
+  },
+  "homepage": "https://github.com/zacfermanis/portfolio#readme",
+  "dependencies": {
+    "@zacfermanis/memory-bank": "^1.0.0"
+  }
+}
