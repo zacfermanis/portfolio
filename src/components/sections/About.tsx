@@ -1,5 +1,8 @@
 import React from 'react'
 import { H2, H3, P, Button } from '@/components/ui'
+import Icon from '../ui/Icon'
+import CVDetails from './CVDetails'
+import { cvData } from '../../data/portfolio'
 
 interface AboutProps {
   title: string
@@ -52,11 +55,19 @@ const About: React.FC<AboutProps> = ({
                 </div>
               </div>
 
+              {/* CV Details */}
+              <div className="pt-4">
+                <CVDetails cvData={cvData} />
+              </div>
+
               {/* CTA Button */}
               {resumeUrl && (
-                <div className="pt-4">
+                <div className="pt-6">
                   <Button href={resumeUrl} variant="outline" size="large">
-                    Download Resume
+                    <span className="flex items-center gap-2">
+                      <Icon name="download" size="small" />
+                      Download Resume
+                    </span>
                   </Button>
                 </div>
               )}

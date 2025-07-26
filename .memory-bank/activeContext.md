@@ -8,6 +8,18 @@ The portfolio project has been successfully updated to reflect Zac Fermanis's cu
 
 ## Recent Changes
 
+- **CV Details Work Experience Enhancement**:
+  - Added comprehensive work history spanning 20+ years of experience
+  - Included all major career positions from Wachovia Bank (2003) to present
+  - Added Elegant Elephant Travel as separate CTO & Co-Founder role (2019-Present)
+  - Enhanced Liberty Mutual entries with detailed descriptions and technologies
+  - Added Fidelity Investments, State Street Corporation, and Bank of America experience
+  - Created comprehensive test coverage for CV details component
+  - All work experience entries include detailed descriptions, technologies, and locations
+  - Fixed CV details panel height constraint to prevent content cropping
+  - Increased max-height from 2000px to 6000px to accommodate all content
+  - Added additional bottom padding and spacing for better visual presentation
+
 - **Favicon & Branding Update**:
   - Created custom favicon from Me_Transparent_Drawn.png using ImageMagick
   - Generated multiple favicon sizes (16x16, 32x32, 192x192, 512x512, 180x180)
@@ -64,6 +76,12 @@ The portfolio project has been successfully updated to reflect Zac Fermanis's cu
 ## Current Status
 
 ✅ **Completed**:
+- Comprehensive work experience added to CV details spanning 20+ years
+- All major career positions included from Wachovia Bank (2003) to present
+- Elegant Elephant Travel added as separate CTO & Co-Founder role
+- Enhanced Liberty Mutual entries with detailed descriptions and technologies
+- Added Fidelity Investments, State Street Corporation, and Bank of America experience
+- Created comprehensive test coverage for CV details component
 - All content updated to reflect current role positioning
 - Liberty Mutual positioned as primary current role
 - EET presented as additional significant achievement
