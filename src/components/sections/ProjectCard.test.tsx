@@ -37,10 +37,10 @@ describe('ProjectCard', () => {
     expect(screen.getByText('MongoDB')).toBeInTheDocument()
   })
 
-  it('renders live demo button when liveUrl is provided', () => {
+  it('renders live site button when liveUrl is provided', () => {
     render(<ProjectCard project={defaultProject} />)
     
-    const liveButton = screen.getByRole('link', { name: /live demo/i })
+    const liveButton = screen.getByRole('link', { name: /live site/i })
     expect(liveButton).toBeInTheDocument()
     expect(liveButton).toHaveAttribute('href', 'https://project1.com')
   })
@@ -53,7 +53,7 @@ describe('ProjectCard', () => {
     expect(githubButton).toHaveAttribute('href', 'https://github.com/user/project1')
   })
 
-  it('does not render live demo button when liveUrl is not provided', () => {
+  it('does not render live site button when liveUrl is not provided', () => {
     const projectWithoutLive = {
       ...defaultProject,
       liveUrl: undefined
@@ -61,7 +61,7 @@ describe('ProjectCard', () => {
     
     render(<ProjectCard project={projectWithoutLive} />)
     
-    const liveButton = screen.queryByRole('link', { name: /live demo/i })
+    const liveButton = screen.queryByRole('link', { name: /live site/i })
     expect(liveButton).not.toBeInTheDocument()
   })
 
@@ -135,14 +135,14 @@ describe('ProjectCard', () => {
   it('renders action buttons with proper layout', () => {
     render(<ProjectCard project={defaultProject} />)
     
-    const buttonContainer = screen.getByRole('link', { name: /live demo/i }).parentElement
+    const buttonContainer = screen.getByRole('link', { name: /live site/i }).parentElement
     expect(buttonContainer).toHaveClass('flex', 'gap-3', 'mt-auto')
   })
 
   it('renders buttons with flex-1 class for equal width', () => {
     render(<ProjectCard project={defaultProject} />)
     
-    const liveButton = screen.getByRole('link', { name: /live demo/i })
+    const liveButton = screen.getByRole('link', { name: /live site/i })
     const githubButton = screen.getByRole('link', { name: /source code/i })
     
     expect(liveButton).toHaveClass('flex-1')
