@@ -1,13 +1,10 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  // Enable static site generation
-  output: 'export',
-  
   // Image optimization
   images: {
-    unoptimized: true, // Required for static export
     domains: [],
+    formats: ['image/webp', 'image/avif'],
   },
   
   // TypeScript and ESLint configuration
