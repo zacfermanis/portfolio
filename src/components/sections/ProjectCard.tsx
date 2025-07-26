@@ -77,8 +77,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               size="small"
               className="flex-1"
             >
-              <Icon name="arrow" size="small" className="mr-1" />
-              Live Demo
+              <Icon name="globe" size="small" className="mr-1" />
+              Live Site
             </Button>
           )}
           {project.githubUrl && project.githubUrl !== "#" && !project.isPrivate && (
