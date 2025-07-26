@@ -1,11 +1,13 @@
 # Deployment and Launch Design
 
 ## Overview
+
 This specification covers the deployment, optimization, and launch of the portfolio website, including production build optimization, hosting setup, and post-launch monitoring.
 
 ## Architecture
 
 ### Deployment Architecture
+
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   GitHub        │    │   Vercel        │    │   Custom Domain │
@@ -26,6 +28,7 @@ This specification covers the deployment, optimization, and launch of the portfo
 ```
 
 ### Build Pipeline
+
 ```
 Source Code → TypeScript Compilation → Bundle Optimization → Static Generation → CDN Deployment
      │              │                      │                      │
@@ -39,6 +42,7 @@ Source Code → TypeScript Compilation → Bundle Optimization → Static Genera
 ### Build Configuration
 
 #### next.config.js (Production)
+
 ```javascript
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -61,12 +65,13 @@ const nextConfig = {
     maxInactiveAge: 25 * 1000,
     pagesBufferLength: 2,
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
 ```
 
 #### package.json Scripts
+
 ```json
 {
   "scripts": {
@@ -87,6 +92,7 @@ module.exports = nextConfig
 ### Deployment Configuration
 
 #### vercel.json
+
 ```json
 {
   "version": 2,
@@ -135,11 +141,13 @@ module.exports = nextConfig
 ### SEO Configuration
 
 #### next-seo.config.js
+
 ```javascript
 export default {
   titleTemplate: '%s | Zac Fermanis',
   defaultTitle: 'Zac Fermanis - Software Engineer & Developer',
-  description: 'Professional portfolio of Zac Fermanis, a software engineer specializing in modern web development and full-stack solutions.',
+  description:
+    'Professional portfolio of Zac Fermanis, a software engineer specializing in modern web development and full-stack solutions.',
   canonical: 'https://zacfermanis.com',
   openGraph: {
     type: 'website',
@@ -147,7 +155,8 @@ export default {
     url: 'https://zacfermanis.com',
     siteName: 'Zac Fermanis Portfolio',
     title: 'Zac Fermanis - Software Engineer & Developer',
-    description: 'Professional portfolio showcasing web development projects and technical expertise.',
+    description:
+      'Professional portfolio showcasing web development projects and technical expertise.',
     images: [
       {
         url: 'https://zacfermanis.com/og-image.jpg',
@@ -172,12 +181,13 @@ export default {
       content: '#3B82F6',
     },
   ],
-}
+};
 ```
 
 ## Data Models
 
 ### Analytics Configuration
+
 ```typescript
 interface AnalyticsConfig {
   googleAnalyticsId?: string;
@@ -193,6 +203,7 @@ interface AnalyticsConfig {
 ```
 
 ### Performance Metrics
+
 ```typescript
 interface PerformanceMetrics {
   lighthouse: {
@@ -217,6 +228,7 @@ interface PerformanceMetrics {
 ```
 
 ### Deployment Status
+
 ```typescript
 interface DeploymentStatus {
   environment: 'preview' | 'production';
@@ -231,18 +243,21 @@ interface DeploymentStatus {
 ## Error Handling
 
 ### Build Failures
+
 - Clear error messages for build issues
 - Automated rollback to previous working version
 - Build failure notifications
 - Detailed build logs for debugging
 
 ### Deployment Issues
+
 - Health checks for deployed applications
 - Automatic retry mechanisms
 - Fallback to previous deployment
 - Incident response procedures
 
 ### Performance Degradation
+
 - Performance monitoring alerts
 - Automatic scaling if needed
 - Performance regression detection
@@ -251,18 +266,21 @@ interface DeploymentStatus {
 ## Testing Strategy
 
 ### Pre-Deployment Testing
+
 - Build verification tests
 - Performance regression testing
 - Security vulnerability scanning
 - Cross-browser compatibility testing
 
 ### Post-Deployment Testing
+
 - Smoke tests for critical functionality
 - Performance monitoring
 - User experience testing
 - SEO validation
 
 ### Monitoring and Alerting
+
 - Uptime monitoring
 - Performance metrics tracking
 - Error rate monitoring
@@ -271,6 +289,7 @@ interface DeploymentStatus {
 ## Implementation Notes
 
 ### Build Optimization
+
 - Tree shaking for unused code elimination
 - Code splitting for optimal loading
 - Image optimization and WebP conversion
@@ -278,6 +297,7 @@ interface DeploymentStatus {
 - Bundle analysis and optimization
 
 ### Security Measures
+
 - HTTPS enforcement
 - Security headers configuration
 - Content Security Policy
@@ -285,6 +305,7 @@ interface DeploymentStatus {
 - Regular dependency updates
 
 ### Performance Optimization
+
 - Static site generation
 - CDN distribution
 - Image lazy loading
@@ -292,6 +313,7 @@ interface DeploymentStatus {
 - Service worker for caching
 
 ### SEO Implementation
+
 - Meta tags optimization
 - Structured data markup
 - Sitemap generation
@@ -299,8 +321,9 @@ interface DeploymentStatus {
 - Social media optimization
 
 ### Analytics Setup
+
 - Privacy-focused analytics
 - Performance monitoring
 - Conversion tracking
 - User behavior analysis
-- A/B testing capabilities 
+- A/B testing capabilities

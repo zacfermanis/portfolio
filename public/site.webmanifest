@@ -1,0 +1,21 @@
+{
+  "name": "Zac Fermanis - Solutions Engineer, Architect & AI Leader",
+  "short_name": "Zac Fermanis",
+  "description": "Solutions Engineer, Architect & AI Leader - Experienced software engineer and technology leader with expertise in enterprise systems, full-stack development, and AI-driven solutions.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#3b82f6",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+} 

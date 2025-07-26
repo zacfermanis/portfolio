@@ -1,11 +1,13 @@
 # Project Setup Design
 
 ## Overview
+
 This specification covers the technical setup and configuration of the Next.js portfolio project, including all development tools, testing framework, and project structure.
 
 ## Architecture
 
 ### Project Structure
+
 ```
 portfolio/
 ├── .memory-bank/          # Memory bank documentation (existing)
@@ -39,6 +41,7 @@ portfolio/
 ```
 
 ### Technology Stack
+
 - **Framework**: Next.js 14+ with App Router
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS
@@ -51,6 +54,7 @@ portfolio/
 ### Configuration Files
 
 #### next.config.js
+
 ```javascript
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -66,12 +70,13 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
 ```
 
 #### tailwind.config.js
+
 ```javascript
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -91,16 +96,17 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};
 ```
 
 #### jest.config.js
+
 ```javascript
-const nextJest = require('next/jest')
+const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({
   dir: './',
-})
+});
 
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
@@ -108,14 +114,15 @@ const customJestConfig = {
   moduleNameMapping: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-}
+};
 
-module.exports = createJestConfig(customJestConfig)
+module.exports = createJestConfig(customJestConfig);
 ```
 
 ## Data Models
 
 ### Package.json Scripts
+
 ```json
 {
   "scripts": {
@@ -132,6 +139,7 @@ module.exports = createJestConfig(customJestConfig)
 ```
 
 ### TypeScript Configuration
+
 ```json
 {
   "compilerOptions": {
@@ -167,12 +175,14 @@ module.exports = createJestConfig(customJestConfig)
 ## Error Handling
 
 ### Development Environment
+
 - Clear error messages for missing dependencies
 - TypeScript compilation errors displayed in development
 - ESLint errors shown in editor and console
 - Test failures with detailed output
 
 ### Production Build
+
 - TypeScript errors prevent build
 - ESLint errors prevent build
 - Missing environment variables cause clear errors
@@ -181,12 +191,14 @@ module.exports = createJestConfig(customJestConfig)
 ## Testing Strategy
 
 ### Test Setup
+
 - Jest configuration with Next.js integration
 - React Testing Library for component testing
 - Custom test utilities for common patterns
 - Coverage reporting configured
 
 ### Test Structure
+
 ```
 tests/
 ├── setup.ts              # Test setup and configuration
@@ -197,6 +209,7 @@ tests/
 ```
 
 ### Testing Patterns
+
 - Component tests co-located with components
 - Integration tests for page-level functionality
 - Unit tests for utility functions
@@ -205,6 +218,7 @@ tests/
 ## Implementation Notes
 
 ### Development Workflow
+
 1. Initialize Next.js using npx create-next-app while preserving existing files
 2. Merge any existing package.json with Next.js generated one
 3. Configure all development tools
@@ -213,6 +227,7 @@ tests/
 6. Verify all scripts work correctly
 
 ### File Preservation Strategy
+
 - Use npx create-next-app with --typescript flag
 - Manually preserve .memory-bank, .specs, and .cursorrules files
 - Merge existing package.json dependencies with Next.js defaults
@@ -220,6 +235,7 @@ tests/
 - Ensure no existing configuration is overwritten
 
 ### Quality Assurance
+
 - All configuration files properly formatted
 - TypeScript strict mode enforced
 - ESLint rules prevent common issues
@@ -227,7 +243,8 @@ tests/
 - Tests run without errors
 
 ### Performance Considerations
+
 - Next.js optimized for static generation
 - Tailwind CSS purged in production
 - TypeScript compilation optimized
-- Development server fast refresh enabled 
+- Development server fast refresh enabled

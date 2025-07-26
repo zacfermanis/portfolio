@@ -1,11 +1,13 @@
 # Core Components Design
 
 ## Overview
+
 This specification covers the design and implementation of the core portfolio components, including layout, sections, and reusable UI components.
 
 ## Architecture
 
 ### Component Hierarchy
+
 ```
 Layout
 ├── Header
@@ -23,6 +25,7 @@ Layout
 ```
 
 ### Component Structure
+
 ```
 src/components/
 ├── layout/
@@ -48,6 +51,7 @@ src/components/
 ### Layout Components
 
 #### Layout.tsx
+
 ```typescript
 interface LayoutProps {
   children: React.ReactNode;
@@ -69,6 +73,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
 ```
 
 #### Header.tsx
+
 ```typescript
 interface HeaderProps {
   className?: string;
@@ -76,7 +81,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   return (
     <header className={`sticky top-0 z-50 bg-white/90 backdrop-blur-sm ${className}`}>
       <nav className="container mx-auto px-4 py-4">
@@ -90,6 +95,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
 ### Section Components
 
 #### Hero.tsx
+
 ```typescript
 interface HeroProps {
   name: string;
@@ -130,6 +136,7 @@ const Hero: React.FC<HeroProps> = ({
 ```
 
 #### Projects.tsx
+
 ```typescript
 interface Project {
   id: string;
@@ -148,7 +155,7 @@ interface ProjectsProps {
 
 const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   const [filter, setFilter] = useState<string>('all');
-  
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -169,6 +176,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
 ### UI Components
 
 #### Button.tsx
+
 ```typescript
 interface ButtonProps {
   children: React.ReactNode;
@@ -190,21 +198,21 @@ const Button: React.FC<ButtonProps> = ({
   className = ''
 }) => {
   const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
-  
+
   const variantClasses = {
     primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
     secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',
     outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-500'
   };
-  
+
   const sizeClasses = {
     small: 'px-3 py-1.5 text-sm',
     medium: 'px-4 py-2 text-base',
     large: 'px-6 py-3 text-lg'
   };
-  
+
   const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
-  
+
   if (href) {
     return (
       <Link href={href} className={classes}>
@@ -212,7 +220,7 @@ const Button: React.FC<ButtonProps> = ({
       </Link>
     );
   }
-  
+
   return (
     <button
       className={classes}
@@ -226,6 +234,7 @@ const Button: React.FC<ButtonProps> = ({
 ```
 
 #### Card.tsx
+
 ```typescript
 interface CardProps {
   children: React.ReactNode;
@@ -247,7 +256,7 @@ const Card: React.FC<CardProps> = ({
     medium: 'p-6',
     large: 'p-8'
   };
-  
+
   return (
     <div className={`${baseClasses} ${hoverClasses} ${paddingClasses[padding]} ${className}`}>
       {children}
@@ -259,6 +268,7 @@ const Card: React.FC<CardProps> = ({
 ## Data Models
 
 ### Project Type
+
 ```typescript
 interface Project {
   id: string;
@@ -276,6 +286,7 @@ interface Project {
 ```
 
 ### Skill Type
+
 ```typescript
 interface Skill {
   name: string;
@@ -286,6 +297,7 @@ interface Skill {
 ```
 
 ### Contact Type
+
 ```typescript
 interface ContactInfo {
   email: string;
@@ -303,16 +315,19 @@ interface ContactInfo {
 ## Error Handling
 
 ### Component Error Boundaries
+
 - Each major section wrapped in error boundary
 - Graceful fallback for failed component renders
 - Error logging for debugging
 
 ### Form Validation
+
 - Client-side validation for contact form
 - Clear error messages for users
 - Server-side validation for form submissions
 
 ### Image Loading
+
 - Fallback images for failed loads
 - Loading states for image components
 - Optimized image formats and sizes
@@ -320,18 +335,21 @@ interface ContactInfo {
 ## Testing Strategy
 
 ### Component Testing
+
 - Unit tests for each component
 - Props validation testing
 - User interaction testing
 - Accessibility testing
 
 ### Integration Testing
+
 - Section component integration
 - Layout component behavior
 - Navigation functionality
 - Form submission flow
 
 ### Visual Testing
+
 - Responsive design testing
 - Cross-browser compatibility
 - Accessibility compliance
@@ -340,20 +358,23 @@ interface ContactInfo {
 ## Implementation Notes
 
 ### Styling Approach
+
 - Tailwind CSS for utility-first styling
 - Custom CSS variables for theme consistency
 - Responsive design with mobile-first approach
 - Dark mode support (future enhancement)
 
 ### Performance Optimization
+
 - Component lazy loading for sections
 - Image optimization with Next.js Image
 - Code splitting for large components
 - Memoization for expensive computations
 
 ### Accessibility Features
+
 - Semantic HTML structure
 - ARIA labels and roles
 - Keyboard navigation support
 - Focus management
-- Color contrast compliance 
+- Color contrast compliance

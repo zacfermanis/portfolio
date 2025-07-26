@@ -3,6 +3,7 @@
 ## Technology Stack
 
 ### Core Technologies
+
 - **Next.js** - React framework for static site generation
 - **TypeScript** - Type-safe JavaScript development
 - **React** - UI library for component-based development
@@ -10,6 +11,7 @@
 - **Framer Motion** - Animation library for smooth interactions
 
 ### Development Tools
+
 - **Node.js** - JavaScript runtime
 - **Yarn** - Package manager (already configured)
 - **ESLint** - Code linting and formatting
@@ -18,6 +20,7 @@
 - **React Testing Library** - Component testing utilities
 
 ### Build & Deployment
+
 - **Vercel** - Recommended deployment platform for Next.js
 - **GitHub** - Version control and CI/CD
 - **Static Site Generation** - Pre-built HTML for optimal performance
@@ -25,11 +28,13 @@
 ## Development Setup
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - Yarn package manager
 - Git for version control
 
 ### Environment Setup
+
 ```bash
 # Install dependencies
 yarn install
@@ -48,6 +53,7 @@ yarn lint
 ```
 
 ### Project Structure
+
 ```
 portfolio/
 ├── .memory-bank/          # Memory bank documentation
@@ -67,17 +73,20 @@ portfolio/
 ## Technical Constraints
 
 ### Performance Requirements
+
 - **First Contentful Paint**: < 1.5 seconds
 - **Largest Contentful Paint**: < 2.5 seconds
 - **Cumulative Layout Shift**: < 0.1
 - **First Input Delay**: < 100ms
 
 ### Browser Support
+
 - **Modern Browsers**: Chrome, Firefox, Safari, Edge (latest 2 versions)
 - **Mobile**: iOS Safari, Chrome Mobile
 - **Progressive Enhancement**: Core functionality without JavaScript
 
 ### Accessibility Requirements
+
 - **WCAG 2.1 AA** compliance
 - **Keyboard Navigation** support
 - **Screen Reader** compatibility
@@ -85,6 +94,7 @@ portfolio/
 - **Focus Management** for interactive elements
 
 ### SEO Requirements
+
 - **Meta Tags** for social sharing
 - **Structured Data** markup
 - **Sitemap** generation
@@ -94,9 +104,11 @@ portfolio/
 ## Dependencies
 
 ### Current Dependencies
+
 - `@zacfermanis/memory-bank` - Custom memory bank package
 
 ### Planned Dependencies
+
 ```json
 {
   "dependencies": {
@@ -124,6 +136,7 @@ portfolio/
 ## Tool Usage Patterns
 
 ### Development Workflow
+
 1. **TDD Approach**: Write tests first, then implementation
 2. **Component Development**: Create reusable, testable components
 3. **Type Safety**: Full TypeScript coverage, no `any` types
@@ -131,13 +144,15 @@ portfolio/
 5. **Testing**: Behavior-driven tests with React Testing Library
 
 ### Git Workflow
+
 - **Feature Branches**: Create branches for new features
 - **Commit Messages**: Conventional commits format
 - **Pull Requests**: Code review before merging
 - **Main Branch**: Always deployable state
 
 ### Deployment Workflow
+
 - **Automatic Deployment**: Deploy on push to main branch
 - **Preview Deployments**: Automatic preview for pull requests
 - **Performance Monitoring**: Track Core Web Vitals
-- **Rollback Capability**: Quick rollback if issues arise 
+- **Rollback Capability**: Quick rollback if issues arise
