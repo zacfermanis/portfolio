@@ -90,7 +90,7 @@ const Hero: React.FC<HeroProps> = ({
             >
               <svg 
                 className="w-6 h-6 mx-auto" 
-                fill="none" 
+                style={{ fill: 'none' }}
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
               >

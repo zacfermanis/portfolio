@@ -46,8 +46,8 @@ describe('CVDetails', () => {
       expandButton.click()
     })
     
-    // Should have 8 work experience entries (including Elegant Elephant Travel)
+    // Should have 10 work experience entries (including Elegant Elephant Travel and all historical positions)
     const workEntries = screen.getAllByText(/Solutions Engineer|Principal Software Developer|Software Developer|CTO & Co-Founder|Senior Software Engineer|Software Engineer|Associate Software Developer|Junior Developer/)
-    expect(workEntries).toHaveLength(8)
+    expect(workEntries).toHaveLength(10)
   })
 }) 
