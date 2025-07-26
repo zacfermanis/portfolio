@@ -6,7 +6,7 @@ export const heroData = {
   description: "Experienced software engineer and technology leader with expertise in enterprise systems, full-stack development, and AI-driven solutions. Currently serving as Solutions Engineer at Liberty Mutual, leading AI initiatives and enterprise architecture for a Fortune 100 company.",
   ctaText: "View My Work",
   ctaLink: "#projects",
-  image: "/Me_Transparent_Drawn.png"
+  image: "/Me.jpg"
 }
 
 export const aboutData = {
@@ -20,7 +20,7 @@ export const aboutData = {
     "Developed 40+ enterprise systems across various FinTech industries",
     "Specialized in AI/ML integration and cloud-native architectures"
   ],
-  image: "/Me_Transparent_Drawn.png",
+  image: "/Me.jpg",
   resumeUrl: "/Zac_Fermanis-Resume.pdf"
 }
 
@@ -74,7 +74,7 @@ export const projectsData = {
     },
     {
       id: "memory-banks",
-      title: "Memory Banks",
+      title: "Memory Bank for Agents",
       description: "A drop-in NPX script that installs and configures the Memory Bank system following the SPEC design process. Utilizes cutting-edge best practices in Agentic Coding to create intelligent memory management solutions for AI development workflows.",
       image: "/logos/memory-bank-logo.png",
       technologies: ["NPX", "TypeScript", "Agentic Coding", "SPEC Design", "AI/ML", "Memory Management", "Development Tools"],

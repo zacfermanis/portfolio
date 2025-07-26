@@ -16,6 +16,14 @@ The portfolio contact form has been fixed to work properly with Resend email ser
   - Improved error messages to help users troubleshoot issues
   - Added environment variable validation with helpful setup instructions
 
+- **Profile Image Update**:
+  - Updated profile image from `Me_Transparent_Drawn.png` to `Me.jpg`
+  - Updated both hero section and about section image references
+  - Constrained about section image size to prevent pixelation
+  - Added `max-w-xs` and `max-w-sm` classes to limit image dimensions
+  - Centered image in about section for better visual balance
+  - Maintained all existing functionality and styling
+
 - **Documentation & Setup Improvements**:
   - Updated README.md with detailed environment setup instructions
   - Added troubleshooting section for common contact form issues
@@ -29,6 +37,14 @@ The portfolio contact form has been fixed to work properly with Resend email ser
   - Added environment-specific logging for development
   - Improved TypeScript type safety in error handling
   - Maintained all existing functionality while fixing email issues
+
+- **Mobile Navigation Enhancement**:
+  - Implemented hamburger menu for mobile devices
+  - Added responsive navigation with collapsible menu
+  - Created menu and close icons for mobile navigation
+  - Added smooth transitions and hover effects
+  - Ensured accessibility with proper ARIA labels
+  - Menu automatically closes when navigation links are clicked
 
 - **Portfolio Content Update - Role Positioning Update**:
 

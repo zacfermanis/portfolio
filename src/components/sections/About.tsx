@@ -62,8 +62,12 @@ const About: React.FC<AboutProps> = ({
 
               {/* CTA Button */}
               {resumeUrl && (
-                <div className="pt-6">
-                  <Button href={resumeUrl} variant="outline" size="large">
+                <div className="pt-6 text-center">
+                  <Button 
+                    href={resumeUrl} 
+                    variant="secondary" 
+                    size="large"
+                  >
                     <span className="flex items-center gap-2">
                       <Icon name="download" size="small" />
                       Download Resume
@@ -75,15 +79,15 @@ const About: React.FC<AboutProps> = ({
 
             {/* Image */}
             {image && (
-              <div className="relative">
-                <div className="relative z-10">
+              <div className="relative flex justify-center">
+                <div className="relative z-10 max-w-sm">
                   <img
                     src={image}
                     alt="Professional headshot"
-                    className="w-full h-auto rounded-lg shadow-xl"
+                    className="w-full h-auto rounded-lg shadow-xl max-w-xs"
                   />
                 </div>
-                <div className="absolute -bottom-4 -right-4 w-full h-full bg-blue-200 rounded-lg -z-10"></div>
+                <div className="absolute -bottom-4 -right-4 w-full h-full bg-blue-200 rounded-lg -z-10 max-w-sm"></div>
               </div>
             )}
           </div>
