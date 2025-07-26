@@ -62,68 +62,70 @@ export const projectsData = {
   description: "Here are some of the key projects I've worked on, showcasing my expertise in full-stack development, enterprise systems, and AI integration.",
   projects: [
     {
-      id: "liberty-mutual-ai",
-      title: "Liberty Mutual AI Initiatives",
-      description: "Leading AI strategy and implementation for Corporate Functions, including establishing best practices for Agentic Coding, creating MCP servers, and advising senior leadership on enterprise AI architecture.",
-      image: "",
-      technologies: ["AI/ML", "Enterprise Architecture", "MCP", "Python", "Security", "Leadership"],
+      id: "ai-ga-tetris",
+      title: "AI-GA Tetris",
+      description: "Advanced Tetris implementation using genetic algorithms and artificial intelligence. Features neural network-based gameplay optimization, genetic algorithm training for optimal piece placement strategies, and real-time AI decision making for competitive gameplay.",
+      image: "/logos/AI-GA-Tetris_Logo.png",
+      technologies: ["Java", "Genetic Algorithms", "Neural Networks", "AI/ML", "Game Development", "Algorithm Optimization"],
       liveUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/zacfermanis/ai-ga-tetris",
+      featured: true,
+      category: "ai" as const
+    },
+    {
+      id: "memory-banks",
+      title: "Memory Banks",
+      description: "A drop-in NPX script that installs and configures the Memory Bank system following the SPEC design process. Utilizes cutting-edge best practices in Agentic Coding to create intelligent memory management solutions for AI development workflows.",
+      image: "/logos/memory-bank-logo.png",
+      technologies: ["NPX", "TypeScript", "Agentic Coding", "SPEC Design", "AI/ML", "Memory Management", "Development Tools"],
+      liveUrl: "#",
+      githubUrl: "https://github.com/zacfermanis/memory-banks",
       featured: true,
       category: "ai" as const
     },
     {
       id: "elegant-elephant",
       title: "Elegant Elephant Travel Platform",
-      description: "Comprehensive travel management system serving thousands of customers with real-time booking, payment processing, and AI-powered recommendations. Built with modern web technologies and cloud infrastructure.",
-      image: "",
+      description: "Comprehensive travel management system serving thousands of customers with real-time booking, payment processing, and AI-powered recommendations. Built with modern web technologies and cloud infrastructure. Visit www.elegantelephanttravel.com to experience the platform.",
+      image: "/logos/eelogo_llc_logo_color_rgb.webp",
       technologies: ["React", "Node.js", "PostgreSQL", "AWS", "Stripe API", "OpenAI API"],
       liveUrl: "https://elegantelephanttravel.com",
-      githubUrl: "https://github.com/zacfermanis/elegant-elephant",
+      githubUrl: "#",
       featured: true,
-      category: "web" as const
+      category: "web" as const,
+      isPrivate: true
     },
     {
-      id: "enterprise-crm",
-      title: "Enterprise CRM System",
-      description: "Large-scale customer relationship management system for Fortune 500 company, handling millions of customer records with advanced analytics and reporting capabilities.",
-      image: "",
-      technologies: ["Angular", "C#", ".NET Core", "SQL Server", "Azure", "Power BI"],
+      id: "bad-neighbor",
+      title: "Bad Neighbor",
+      description: "A LUA-based game developed using the Love2D framework. Features engaging gameplay mechanics, smooth animations, and interactive elements. Demonstrates game development skills and LUA programming expertise.",
+      image: "/logos/bad_neighbor.png",
+      technologies: ["LUA", "Love2D", "Game Development", "2D Graphics", "Game Mechanics", "Animation"],
       liveUrl: "#",
       githubUrl: "#",
+      featured: false,
+      category: "other" as const,
+      isPrivate: true
+    },
+    {
+      id: "fermanis-lawncare",
+      title: "Fermanis & Sons Lawn Care",
+      description: "Business management system for lawn care operations, featuring customer management, scheduling, billing, and service tracking. Built with modern web technologies for efficient business operations. Visit www.fermanisandsons.com to see the platform in action.",
+      image: "/logos/FermanisAndSonsLogo_transparent.webp",
+      technologies: ["Web Development", "Business Management", "Customer Management", "Scheduling", "Billing System"],
+      liveUrl: "https://fermanisandsons.com",
+      githubUrl: "https://github.com/zacfermanis/fermanis_and_sons_lawncare",
       featured: false,
       category: "web" as const
     },
     {
-      id: "ai-analytics",
-      title: "AI-Powered Analytics Platform",
-      description: "Machine learning platform for predictive analytics and business intelligence, processing terabytes of data with real-time insights and automated reporting.",
-      image: "",
-      technologies: ["Python", "TensorFlow", "React", "PostgreSQL", "Docker", "Kubernetes"],
+      id: "moving-systems",
+      title: "Moving Systems Software",
+      description: "Enterprise-level software solution for moving and logistics companies. Handles inventory management, route optimization, customer tracking, and operational efficiency for large-scale moving operations.",
+      image: "/logos/Moving_Systems_logo.png",
+      technologies: ["Java", "Enterprise Systems", "Logistics", "Inventory Management", "Route Optimization", "Database Management"],
       liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
-      category: "backend" as const
-    },
-    {
-      id: "mobile-app",
-      title: "Cross-Platform Mobile App",
-      description: "React Native application for field service management, featuring offline capabilities, GPS tracking, and real-time synchronization with backend systems.",
-      image: "",
-      technologies: ["React Native", "Node.js", "MongoDB", "AWS", "Socket.io", "Redux"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
-      category: "mobile" as const
-    },
-    {
-      id: "cloud-migration",
-      title: "Legacy System Cloud Migration",
-      description: "Successfully migrated 20+ legacy applications to cloud infrastructure, improving performance by 300% and reducing operational costs by 60%.",
-      image: "",
-      technologies: ["AWS", "Docker", "Kubernetes", "Terraform", "Jenkins", "Monitoring"],
-      liveUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/zacfermanis/movingsystems",
       featured: false,
       category: "other" as const
     }
@@ -246,6 +248,62 @@ export const cvData = {
         "Implemented automated testing and deployment processes"
       ],
       technologies: ["Java", "C#", "SQL Server", "Enterprise Systems", "Integration"]
+    },
+    {
+      yearRange: "2004-2006",
+      company: "Fidelity Investments",
+      location: "Boston, MA",
+      title: "Associate Software Developer",
+      description: [
+        "Investment Management Technology",
+        "Developed financial applications for investment management and trading systems",
+        "Worked on portfolio management and risk assessment tools",
+        "Collaborated with financial analysts and traders to implement business requirements",
+        "Implemented data processing and reporting systems for investment portfolios"
+      ],
+      technologies: ["Java", "Oracle", "Financial Systems", "Data Processing", "Reporting"]
+    },
+    {
+      yearRange: "2003-2004",
+      company: "State Street Corporation",
+      location: "Boston, MA",
+      title: "Junior Developer",
+      description: [
+        "Global Technology Services",
+        "Developed applications for financial services and banking operations",
+        "Worked on data processing and reporting systems",
+        "Supported legacy systems and participated in system modernization efforts",
+        "Collaborated with business analysts to understand and implement requirements"
+      ],
+      technologies: ["Java", "COBOL", "Mainframe Systems", "Financial Services", "Data Processing"]
+    },
+    {
+      yearRange: "2002-2003",
+      company: "Bank of America",
+      location: "Charlotte, NC",
+      title: "Software Engineer",
+      description: [
+        "Consumer Banking Technology",
+        "Developed applications for consumer banking and online services",
+        "Worked on customer-facing web applications and backend services",
+        "Implemented security measures for financial data protection",
+        "Collaborated with cross-functional teams on digital banking initiatives"
+      ],
+      technologies: ["Java", "JavaScript", "Web Services", "Security", "Consumer Banking"]
+    },
+    {
+      yearRange: "2001-2002",
+      company: "Wachovia Bank",
+      location: "Charlotte, NC",
+      title: "Software Engineer",
+      description: [
+        "Retail Banking Systems",
+        "Developed applications for retail banking operations",
+        "Worked on customer account management and transaction processing systems",
+        "Implemented data validation and error handling for financial transactions",
+        "Supported system integration and data migration projects"
+      ],
+      technologies: ["Java", "SQL Server", "Retail Banking", "Transaction Processing", "System Integration"]
     }
   ]
 } 

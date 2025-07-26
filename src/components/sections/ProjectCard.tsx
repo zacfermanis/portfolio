@@ -10,6 +10,7 @@ interface Project {
   liveUrl?: string
   githubUrl?: string
   featured?: boolean
+  isPrivate?: boolean
 }
 
 interface ProjectCardProps {
@@ -25,7 +26,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+            className="w-full h-48 object-contain bg-gray-50 transition-transform duration-300 hover:scale-105"
           />
         ) : (
           <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center">
@@ -38,6 +39,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         {project.featured && (
           <div className="absolute top-4 right-4 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
             Featured
+          </div>
+        )}
+        {project.isPrivate && (
+          <div className="absolute top-4 left-4 bg-gray-600 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+            <span className="text-xs">🔒</span>
+            Private
           </div>
         )}
       </div>
@@ -63,7 +70,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
         {/* Action Buttons */}
         <div className="flex gap-3 mt-auto">
-          {project.liveUrl && (
+          {project.liveUrl && project.liveUrl !== "#" && (
             <Button
               href={project.liveUrl}
               variant="primary"
@@ -74,7 +81,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               Live Demo
             </Button>
           )}
-          {project.githubUrl && (
+          {project.githubUrl && project.githubUrl !== "#" && !project.isPrivate && (
             <Button
               href={project.githubUrl}
               variant="outline"
@@ -84,6 +91,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               <Icon name="github" size="small" className="mr-1" />
               Source Code
             </Button>
+          )}
+          {project.isPrivate && (
+            <div className="flex-1 flex items-center justify-center text-gray-500 text-sm">
+              <span className="text-xs mr-1">🔒</span>
+              Private Repository
+            </div>
           )}
         </div>
       </div>
