@@ -97,17 +97,39 @@ const Contact: React.FC<ContactProps> = ({
     setSubmitStatus('idle')
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      // Here you would typically send the form data to your backend
-      
-      setSubmitStatus('success')
-      // Clear form data after successful submission
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      // Clear any existing errors
-      setErrors({})
-    } catch {
+      // Send form data to API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (response.ok && result.success) {
+        setSubmitStatus('success')
+        // Clear form data after successful submission
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        // Clear any existing errors
+        setErrors({})
+      } else {
+        setSubmitStatus('error')
+        // Handle server-side validation errors
+        if (result.details && Array.isArray(result.details)) {
+          const serverErrors: Partial<FormData> = {}
+          result.details.forEach((error: string) => {
+            if (error.includes('Name')) serverErrors.name = error
+            if (error.includes('Email')) serverErrors.email = error
+            if (error.includes('Subject')) serverErrors.subject = error
+            if (error.includes('Message')) serverErrors.message = error
+          })
+          setErrors(serverErrors)
+        }
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -245,7 +267,7 @@ const Contact: React.FC<ContactProps> = ({
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white placeholder-gray-500 ${
                       errors.name ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Your name"
@@ -266,7 +288,7 @@ const Contact: React.FC<ContactProps> = ({
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white placeholder-gray-500 ${
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="your.email@example.com"
@@ -287,7 +309,7 @@ const Contact: React.FC<ContactProps> = ({
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white placeholder-gray-500 ${
                       errors.subject ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="What's this about?"
@@ -308,7 +330,7 @@ const Contact: React.FC<ContactProps> = ({
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={5}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white placeholder-gray-500 ${
                       errors.message ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Your message..."
@@ -334,7 +356,9 @@ const Contact: React.FC<ContactProps> = ({
                   <p className="text-green-600 text-center">Message sent successfully!</p>
                 )}
                 {submitStatus === 'error' && (
-                  <p className="text-red-600 text-center">Failed to send message. Please try again.</p>
+                  <p className="text-red-600 text-center">
+                    Failed to send message. Please check your connection and try again.
+                  </p>
                 )}
               </form>
             </div>

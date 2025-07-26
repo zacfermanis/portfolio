@@ -40,10 +40,19 @@ npm install
 yarn install
 ```
 
-3. Copy environment variables:
-```bash
-cp .env.example .env.local
-```
+3. Set up environment variables:
+   
+   Create a `.env.local` file in the root directory with the following content:
+   ```bash
+   # Resend API Configuration
+   # Get your API key from https://resend.com/api-keys
+   RESEND_API_KEY=your_resend_api_key_here
+   
+   # Environment
+   NODE_ENV=development
+   ```
+   
+   **Important**: You need a Resend API key to test the contact form locally. Sign up at [resend.com](https://resend.com) and verify your domain (zacfermanis.com is already verified for production).
 
 4. Start the development server:
 ```bash
@@ -115,6 +124,30 @@ The project is configured for static site generation and can be deployed to:
 - Netlify
 - GitHub Pages
 - Any static hosting service
+
+### Environment Variables for Production
+
+For production deployment, set the following environment variables:
+
+- `RESEND_API_KEY`: Your Resend API key for email functionality
+- `NODE_ENV`: Set to `production`
+
+## Troubleshooting
+
+### Contact Form Issues
+
+If the contact form isn't working:
+
+1. **Local Development**: Ensure you have a valid `RESEND_API_KEY` in your `.env.local` file
+2. **Domain Verification**: The domain `zacfermanis.com` is already verified with Resend for production
+3. **API Key**: Make sure your Resend API key is valid and has the necessary permissions
+4. **Environment Variables**: Verify that environment variables are properly set in your deployment platform
+
+### Common Error Messages
+
+- **"RESEND_API_KEY environment variable is required"**: Set up your `.env.local` file for local development
+- **"Domain is not verified"**: This should not occur in production as `zacfermanis.com` is verified
+- **"Failed to send email"**: Check your Resend API key and account status
 
 ## Contributing
 
