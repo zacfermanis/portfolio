@@ -2,6 +2,12 @@
 
 A professional portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 
+## 🌐 Live Site
+
+**[Visit ZacFermanis.com →](https://zacfermanis.com)**
+
+*Professional portfolio showcasing 20+ years of software engineering experience, AI leadership, and enterprise architecture expertise.*
+
 ## Features
 
 - 🚀 Next.js 15 with App Router
