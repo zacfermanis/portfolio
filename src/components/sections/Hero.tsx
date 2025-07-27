@@ -40,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 to-cyan-100 relative overflow-hidden">
+    <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 to-cyan-100 relative overflow-hidden">
       <ThreeJSBackground enabled={true} quality="high" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">

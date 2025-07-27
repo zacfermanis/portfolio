@@ -25,9 +25,12 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <h1 className="text-xl font-semibold text-white">
+            <a 
+              href="#hero" 
+              className="text-xl font-semibold text-white hover:text-gray-100 transition-colors cursor-pointer"
+            >
               Zac Fermanis
-            </h1>
+            </a>
           </div>
           
           {/* Desktop Navigation */}
