@@ -249,61 +249,6 @@ export const cvData = {
       ],
       technologies: ["Java", "C#", "SQL Server", "Enterprise Systems", "Integration"]
     },
-    {
-      yearRange: "2004-2006",
-      company: "Fidelity Investments",
-      location: "Boston, MA",
-      title: "Associate Software Developer",
-      description: [
-        "Investment Management Technology",
-        "Developed financial applications for investment management and trading systems",
-        "Worked on portfolio management and risk assessment tools",
-        "Collaborated with financial analysts and traders to implement business requirements",
-        "Implemented data processing and reporting systems for investment portfolios"
-      ],
-      technologies: ["Java", "Oracle", "Financial Systems", "Data Processing", "Reporting"]
-    },
-    {
-      yearRange: "2003-2004",
-      company: "State Street Corporation",
-      location: "Boston, MA",
-      title: "Junior Developer",
-      description: [
-        "Global Technology Services",
-        "Developed applications for financial services and banking operations",
-        "Worked on data processing and reporting systems",
-        "Supported legacy systems and participated in system modernization efforts",
-        "Collaborated with business analysts to understand and implement requirements"
-      ],
-      technologies: ["Java", "COBOL", "Mainframe Systems", "Financial Services", "Data Processing"]
-    },
-    {
-      yearRange: "2002-2003",
-      company: "Bank of America",
-      location: "Charlotte, NC",
-      title: "Software Engineer",
-      description: [
-        "Consumer Banking Technology",
-        "Developed applications for consumer banking and online services",
-        "Worked on customer-facing web applications and backend services",
-        "Implemented security measures for financial data protection",
-        "Collaborated with cross-functional teams on digital banking initiatives"
-      ],
-      technologies: ["Java", "JavaScript", "Web Services", "Security", "Consumer Banking"]
-    },
-    {
-      yearRange: "2001-2002",
-      company: "Wachovia Bank",
-      location: "Charlotte, NC",
-      title: "Software Engineer",
-      description: [
-        "Retail Banking Systems",
-        "Developed applications for retail banking operations",
-        "Worked on customer account management and transaction processing systems",
-        "Implemented data validation and error handling for financial transactions",
-        "Supported system integration and data migration projects"
-      ],
-      technologies: ["Java", "SQL Server", "Retail Banking", "Transaction Processing", "System Integration"]
-    }
+
   ]
 } 
