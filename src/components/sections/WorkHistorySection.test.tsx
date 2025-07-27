@@ -62,7 +62,7 @@ describe('WorkHistorySection', () => {
     expect(screen.getByText('Another Company')).toBeInTheDocument()
   })
 
-  it('displays timeline dots with year ranges', () => {
+  it('displays timeline dots with start and end years', () => {
     // Mock useInView to return visible state
     mockUseInView.mockReturnValue({
       ref: { current: null },
@@ -71,8 +71,15 @@ describe('WorkHistorySection', () => {
 
     render(<WorkHistorySection workExperience={mockWorkExperience} />)
     
-    expect(screen.getByText('2020-2023')).toBeInTheDocument()
-    expect(screen.getByText('2018-2020')).toBeInTheDocument()
+    // Check for end years (top dots)
+    expect(screen.getByText('2023')).toBeInTheDocument()
+    
+    // Check for start years (bottom dots)
+    expect(screen.getByText('2018')).toBeInTheDocument()
+    
+    // Check that 2020 appears twice (as end year for second entry and start year for first entry)
+    const year2020Elements = screen.getAllByText('2020')
+    expect(year2020Elements).toHaveLength(2)
   })
 
   it('displays technologies as tags', () => {
@@ -136,16 +143,18 @@ describe('WorkHistorySection', () => {
     expect(cards.length).toBeGreaterThan(0)
   })
 
-  it('displays START dot at the bottom', () => {
+  it('displays two dots per work experience entry', () => {
     // Mock useInView to return visible state
     mockUseInView.mockReturnValue({
       ref: { current: null },
       isInView: true
     })
 
-    render(<WorkHistorySection workExperience={mockWorkExperience} />)
+    const { container } = render(<WorkHistorySection workExperience={mockWorkExperience} />)
     
-    expect(screen.getByText('START')).toBeInTheDocument()
+    // Check that we have the correct number of timeline dots (2 per entry)
+    const timelineDots = container.querySelectorAll('.w-12.h-12.rounded-full')
+    expect(timelineDots.length).toBe(4) // 2 entries × 2 dots each
   })
 
   it('renders timeline line', () => {

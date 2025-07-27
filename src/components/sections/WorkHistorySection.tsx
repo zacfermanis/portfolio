@@ -18,13 +18,25 @@ const WorkExperienceItem: React.FC<WorkExperienceItemProps> = ({ entry, index, i
     resetTrigger: isExpanded
   })
 
+  // Parse the year range to extract start and end years
+  const parseYearRange = (yearRange: string) => {
+    if (yearRange.includes('-')) {
+      const [startYear, endYear] = yearRange.split('-')
+      return { startYear: startYear.trim(), endYear: endYear.trim() }
+    }
+    // Handle single year entries
+    return { startYear: yearRange, endYear: yearRange }
+  }
+
+  const { startYear, endYear } = parseYearRange(entry.yearRange)
+
   return (
     <div className="relative">
-      {/* Timeline dot with date - always visible */}
+      {/* Top timeline dot with end year - always visible */}
       <div className="absolute left-2 top-6 flex items-center z-20">
-        <div className="w-12 h-12 bg-sky-400 rounded-full flex items-center justify-center shadow-md">
+        <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-md ${endYear === 'Present' ? 'bg-green-500' : 'bg-sky-400'}`}>
           <span className="text-xs font-bold text-white text-center leading-tight">
-            {entry.yearRange}
+            {endYear}
           </span>
         </div>
       </div>
@@ -78,6 +90,15 @@ const WorkExperienceItem: React.FC<WorkExperienceItemProps> = ({ entry, index, i
           </div>
         )}
       </div>
+
+      {/* Bottom timeline dot with start year - aligned with card bottom */}
+      <div className="absolute left-2 bottom-6 flex items-center z-20">
+        <div className="w-12 h-12 bg-sky-400 rounded-full flex items-center justify-center shadow-md">
+          <span className="text-xs font-bold text-white text-center leading-tight">
+            {startYear}
+          </span>
+        </div>
+      </div>
     </div>
   )
 }
@@ -117,20 +138,6 @@ const WorkHistorySection: React.FC<WorkHistorySectionProps> = ({
               isExpanded={isExpanded}
             />
           ))}
-          
-          {/* Start dot at the bottom - always visible */}
-          <div className="relative">
-            <div className="absolute left-2 top-0 flex items-center z-20">
-              <div className="w-12 h-12 bg-sky-400 rounded-full flex items-center justify-center shadow-md">
-                <span className="text-xs font-bold text-white text-center leading-tight">
-                  START
-                </span>
-              </div>
-            </div>
-            <div className="ml-20">
-              <div className="h-12"></div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
