@@ -48,7 +48,7 @@ const About: React.FC<AboutProps> = ({
                 <div className="space-y-3">
                   {details.map((detail, index) => (
                     <div key={index} className="flex items-start">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                       <P className="text-gray-700">{detail}</P>
                     </div>
                   ))}
@@ -82,7 +82,7 @@ const About: React.FC<AboutProps> = ({
                     className="w-full h-auto rounded-lg shadow-xl max-w-md"
                   />
                 </div>
-                <div className="absolute -bottom-4 -right-4 w-full h-full bg-blue-200 rounded-lg -z-10 max-w-lg"></div>
+                <div className="absolute -bottom-4 -right-4 w-full h-full bg-sky-200 rounded-lg -z-10 max-w-lg"></div>
               </div>
             )}
           </div>
@@ -90,15 +90,15 @@ const About: React.FC<AboutProps> = ({
           {/* Additional Info */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">20+</div>
+              <div className="text-3xl font-bold text-sky-400 mb-2">20+</div>
               <P variant="small" className="text-gray-600">Years of Experience</P>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">40+</div>
+              <div className="text-3xl font-bold text-sky-400 mb-2">40+</div>
               <P variant="small" className="text-gray-600">Enterprise Systems</P>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">$1M+</div>
+              <div className="text-3xl font-bold text-sky-400 mb-2">$1M+</div>
               <P variant="small" className="text-gray-600">Annual Revenue Generated</P>
             </div>
           </div>

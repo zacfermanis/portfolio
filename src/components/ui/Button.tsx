@@ -8,6 +8,7 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline'
   size?: 'small' | 'medium' | 'large'
   href?: string
+  external?: boolean
   onClick?: () => void
   disabled?: boolean
   className?: string
@@ -19,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   size = 'medium',
   href,
+  external = false,
   onClick,
   disabled = false,
   className = '',
@@ -27,9 +29,9 @@ const Button: React.FC<ButtonProps> = ({
   const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
 
   const variantClasses = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
+    primary: 'bg-sky-400 text-white hover:bg-sky-500 focus:ring-sky-400',
     secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',
-    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-500'
+    outline: 'border-2 border-sky-400 text-sky-400 hover:bg-sky-400 hover:text-white focus:ring-sky-400'
   }
 
   const sizeClasses = {
@@ -41,6 +43,13 @@ const Button: React.FC<ButtonProps> = ({
   const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`
 
   if (href) {
+    if (external) {
+      return (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+          {children}
+        </a>
+      )
+    }
     return (
       <Link href={href} className={classes}>
         {children}

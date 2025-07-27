@@ -9,16 +9,23 @@ const BandSection: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center">
             <div className="flex items-center justify-center gap-4 mb-6">
-              <Icon name="music" size="medium" className="text-blue-600" />
+              <Icon name="music" size="medium" className="text-sky-400" />
               <H3 className="text-gray-900">Oh yeah, I&apos;m also in a band!</H3>
             </div>
             
             <div className="flex items-center justify-center mb-6">
-              <img
-                src="/logos/Echo Blvd Logo.svg"
-                alt="Echo Blvd Logo"
-                className="h-16 w-auto"
-              />
+              <a 
+                href="https://echoblvd.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img
+                  src="/logos/Echo Blvd Logo.svg"
+                  alt="Echo Blvd Logo"
+                  className="h-16 w-auto"
+                />
+              </a>
             </div>
             
             <P className="text-gray-700 mb-6 max-w-2xl mx-auto">
@@ -27,22 +34,14 @@ const BandSection: React.FC = () => {
                 href="https://echoblvd.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 font-semibold underline transition-colors"
+                className="text-sky-400 hover:text-sky-500 font-semibold underline transition-colors"
               >
                 Echo Blvd
               </a>
               . I made that website too!
             </P>
             
-            <a 
-              href="https://echoblvd.com" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors"
-            >
-              <span>Visit Echo Blvd</span>
-              <Icon name="external-link" size="small" />
-            </a>
+
           </div>
         </div>
       </div>

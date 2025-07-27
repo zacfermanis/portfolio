@@ -164,12 +164,12 @@ const Contact: React.FC<ContactProps> = ({
               <div className="space-y-6">
                 {/* Email */}
                 <div className="flex items-center space-x-4">
-                  <Icon name="email" size="large" className="text-blue-600" />
+                  <Icon name="email" size="large" className="text-sky-400" />
                   <div>
                     <P variant="small" className="text-gray-600">Email</P>
                     <a 
                       href={`mailto:${email}`}
-                      className="text-blue-600 hover:text-blue-700 font-medium"
+                      className="text-sky-400 hover:text-sky-500 font-medium"
                     >
                       {email}
                     </a>
@@ -179,12 +179,12 @@ const Contact: React.FC<ContactProps> = ({
                 {/* Phone */}
                 {phone && (
                   <div className="flex items-center space-x-4">
-                    <Icon name="star" size="large" className="text-blue-600" />
+                    <Icon name="star" size="large" className="text-sky-400" />
                     <div>
                       <P variant="small" className="text-gray-600">Phone</P>
                       <a 
                         href={`tel:${phone}`}
-                        className="text-blue-600 hover:text-blue-700 font-medium"
+                        className="text-sky-400 hover:text-sky-500 font-medium"
                       >
                         {phone}
                       </a>
@@ -195,7 +195,7 @@ const Contact: React.FC<ContactProps> = ({
                 {/* Location */}
                 {location && (
                   <div className="flex items-center space-x-4">
-                    <Icon name="star" size="large" className="text-blue-600" />
+                    <Icon name="star" size="large" className="text-sky-400" />
                     <div>
                       <P variant="small" className="text-gray-600">Location</P>
                       <P className="font-medium">{location}</P>
@@ -272,7 +272,7 @@ const Contact: React.FC<ContactProps> = ({
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white placeholder-gray-500 ${
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-sky-400 text-gray-900 bg-white placeholder-gray-500 ${
                       errors.name ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Your name"
@@ -293,7 +293,7 @@ const Contact: React.FC<ContactProps> = ({
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white placeholder-gray-500 ${
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-sky-400 text-gray-900 bg-white placeholder-gray-500 ${
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="your.email@example.com"
@@ -314,7 +314,7 @@ const Contact: React.FC<ContactProps> = ({
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white placeholder-gray-500 ${
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-sky-400 text-gray-900 bg-white placeholder-gray-500 ${
                       errors.subject ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="What's this about?"
@@ -335,7 +335,7 @@ const Contact: React.FC<ContactProps> = ({
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={5}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white placeholder-gray-500 ${
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-sky-400 text-gray-900 bg-white placeholder-gray-500 ${
                       errors.message ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Your message..."

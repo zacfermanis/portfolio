@@ -67,15 +67,17 @@ export const projectsData = {
   description: "Here are some of the key projects I've worked on, showcasing my expertise in full-stack development, enterprise systems, and AI integration.",
   projects: [
     {
-      id: "ai-ga-tetris",
-      title: "AI-GA Tetris",
-      description: "Advanced Tetris implementation using genetic algorithms and artificial intelligence. Features neural network-based gameplay optimization, genetic algorithm training for optimal piece placement strategies, and real-time AI decision making for competitive gameplay.",
-      image: "/logos/AI-GA-Tetris_Logo.png",
-      technologies: ["Java", "Genetic Algorithms", "Neural Networks", "AI/ML", "Game Development", "Algorithm Optimization"],
-      liveUrl: "#",
-      githubUrl: "https://github.com/zacfermanis/ai-ga-tetris",
+      id: "elegant-elephant",
+      title: "Elegant Elephant Travel Platform",
+      description: "Comprehensive travel management system serving thousands of customers with real-time booking, payment processing, and AI-powered recommendations. Built with modern web technologies and cloud infrastructure. Visit www.elegantelephanttravel.com to experience the platform.",
+      image: "/logos/eelogo_llc_logo_color_rgb.webp",
+      technologies: ["React", "Node.js", "PostgreSQL", "AWS", "Stripe API", "OpenAI API"],
+      liveUrl: "https://elegantelephanttravel.com",
+      githubUrl: "#",
       featured: true,
-      category: "ai" as const
+      category: "web" as const,
+      categories: ["web", "ai"] as const,
+      isPrivate: true
     },
     {
       id: "memory-banks",
@@ -86,19 +88,20 @@ export const projectsData = {
       liveUrl: "#",
       githubUrl: "https://github.com/zacfermanis/memory-banks",
       featured: true,
-      category: "ai" as const
+      category: "ai" as const,
+      categories: ["ai"] as const
     },
     {
-      id: "elegant-elephant",
-      title: "Elegant Elephant Travel Platform",
-      description: "Comprehensive travel management system serving thousands of customers with real-time booking, payment processing, and AI-powered recommendations. Built with modern web technologies and cloud infrastructure. Visit www.elegantelephanttravel.com to experience the platform.",
-      image: "/logos/eelogo_llc_logo_color_rgb.webp",
-      technologies: ["React", "Node.js", "PostgreSQL", "AWS", "Stripe API", "OpenAI API"],
-      liveUrl: "https://elegantelephanttravel.com",
-      githubUrl: "#",
+      id: "ai-ga-tetris",
+      title: "AI-GA Tetris",
+      description: "Advanced Tetris implementation using genetic algorithms and artificial intelligence. Features neural network-based gameplay optimization, genetic algorithm training for optimal piece placement strategies, and real-time AI decision making for competitive gameplay.",
+      image: "/logos/AI-GA-Tetris_Logo.png",
+      technologies: ["Java", "Genetic Algorithms", "Neural Networks", "AI/ML", "Game Development", "Algorithm Optimization"],
+      liveUrl: "#",
+      githubUrl: "https://github.com/zacfermanis/ai-ga-tetris",
       featured: true,
-      category: "web" as const,
-      isPrivate: true
+      category: "games" as const,
+      categories: ["games", "ai"] as const
     },
     {
       id: "bad-neighbor",
@@ -109,7 +112,8 @@ export const projectsData = {
       liveUrl: "#",
       githubUrl: "#",
       featured: false,
-      category: "other" as const,
+      category: "games" as const,
+      categories: ["games", "ai"] as const,
       isPrivate: true
     },
     {
@@ -121,19 +125,10 @@ export const projectsData = {
       liveUrl: "https://fermanisandsons.com",
       githubUrl: "https://github.com/zacfermanis/fermanis_and_sons_lawncare",
       featured: false,
-      category: "web" as const
+      category: "web" as const,
+      categories: ["web"] as const
     },
-    {
-      id: "moving-systems",
-      title: "Moving Systems Software",
-      description: "Enterprise-level software solution for moving and logistics companies. Handles inventory management, route optimization, customer tracking, and operational efficiency for large-scale moving operations.",
-      image: "/logos/Moving_Systems_logo.png",
-      technologies: ["Java", "Enterprise Systems", "Logistics", "Inventory Management", "Route Optimization", "Database Management"],
-      liveUrl: "#",
-      githubUrl: "https://github.com/zacfermanis/movingsystems",
-      featured: false,
-      category: "other" as const
-    }
+
   ]
 }
 

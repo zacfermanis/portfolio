@@ -20,84 +20,140 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <Card hover className="h-full flex flex-col">
-      {/* Project Image */}
-      <div className="relative overflow-hidden rounded-t-lg">
-        {project.image ? (
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-48 object-contain bg-gray-50 transition-transform duration-300 hover:scale-105"
-          />
-        ) : (
-          <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-4xl mb-2">🚀</div>
-              <div className="text-gray-600 text-sm font-medium">{project.title}</div>
+      {/* Fixed Layout Structure */}
+      <div className="flex flex-col h-full">
+        {/* Logo Section - Fixed Height */}
+        <div className="h-48 relative overflow-hidden rounded-t-lg">
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-48 object-contain bg-gray-50 transition-transform duration-300 hover:scale-105 rounded-t-lg p-4"
+            />
+          ) : (
+            <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-4xl mb-2">🚀</div>
+                <div className="text-gray-600 text-sm font-medium">{project.title}</div>
+              </div>
             </div>
-          </div>
-        )}
-        {project.featured && (
-          <div className="absolute top-4 right-4 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
-            Featured
-          </div>
-        )}
-        {project.isPrivate && (
-          <div className="absolute top-4 left-4 bg-gray-600 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-            <span className="text-xs">🔒</span>
-            Private
-          </div>
-        )}
-      </div>
-
-      {/* Project Content */}
-      <div className="flex-1 p-6 flex flex-col">
-        <H3 className="mb-2">{project.title}</H3>
-        <P variant="small" className="mb-4 flex-1">
-          {project.description}
-        </P>
-
-        {/* Technology Tags */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.map((tech, index) => (
-            <span
-              key={index}
-              className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex gap-3 mt-auto">
-          {project.liveUrl && project.liveUrl !== "#" && (
-            <Button
-              href={project.liveUrl}
-              variant="primary"
-              size="small"
-              className="flex-1"
-            >
-              <Icon name="globe" size="small" className="mr-1" />
-              Live Site
-            </Button>
           )}
-          {project.githubUrl && project.githubUrl !== "#" && !project.isPrivate && (
-            <Button
-              href={project.githubUrl}
-              variant="outline"
-              size="small"
-              className="flex-1"
-            >
-              <Icon name="github" size="small" className="mr-1" />
-              Source Code
-            </Button>
+          {project.featured && (
+            <div className="absolute top-4 right-4 bg-sky-400 text-white px-2 py-1 rounded-full text-xs font-medium">
+              Featured
+            </div>
           )}
           {project.isPrivate && (
-            <div className="flex-1 flex items-center justify-center text-gray-500 text-sm">
-              <span className="text-xs mr-1">🔒</span>
-              Private Repository
+            <div className="absolute top-4 left-4 bg-gray-600 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+              <span className="text-xs">🔒</span>
+              Private
             </div>
           )}
+        </div>
+
+        {/* Title Section - Fixed Height */}
+        <div className="p-6 pb-2">
+          <H3 className="h-16 flex items-center">{project.title}</H3>
+        </div>
+
+        {/* Screenshot Section - Fixed Height */}
+        <div className="px-6 pb-2 h-48 mb-2">
+          {/* EET Screenshot - Only for Elegant Elephant Travel project */}
+          {project.id === "elegant-elephant" && (
+            <img
+              src="/EET.png"
+              alt="Elegant Elephant Travel Website Screenshot"
+              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+            />
+          )}
+          
+          {/* Memory Bank Screenshot - Only for Memory Banks project */}
+          {project.id === "memory-banks" && (
+            <img
+              src="/MemoryBankSite.png"
+              alt="Memory Bank for Agents Website Screenshot"
+              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+            />
+          )}
+          
+          {/* AI-GA Tetris Screenshot - Only for AI-GA Tetris project */}
+          {project.id === "ai-ga-tetris" && (
+            <img
+              src="/TetrisPic.png"
+              alt="AI-GA Tetris Game Screenshot"
+              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+            />
+          )}
+          
+          {/* Bad Neighbor Screenshot - Only for Bad Neighbor project */}
+          {project.id === "bad-neighbor" && (
+            <img
+              src="/badNeighbor screenshot.png"
+              alt="Bad Neighbor Game Screenshot"
+              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+            />
+          )}
+          
+          {/* Fermanis & Sons Screenshot - Only for Fermanis & Sons project */}
+          {project.id === "fermanis-lawncare" && (
+            <img
+              src="/fermanisAndSonsScreenshot.png"
+              alt="Fermanis & Sons Lawn Care Website Screenshot"
+              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+            />
+          )}
+        </div>
+
+        {/* Content Section - Flexible */}
+        <div className="px-6 pb-6 flex-1 flex flex-col">
+          <P variant="small" className="mb-4 flex-1">
+            {project.description}
+          </P>
+
+          {/* Technology Tags */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.technologies.map((tech, index) => (
+              <span
+                key={index}
+                className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex gap-3 mt-auto">
+            {project.liveUrl && project.liveUrl !== "#" && (
+              <Button
+                href={project.liveUrl}
+                external={true}
+                variant="primary"
+                size="small"
+                className="flex-1"
+              >
+                <Icon name="globe" size="small" className="mr-1" />
+                Live Site
+              </Button>
+            )}
+            {project.githubUrl && project.githubUrl !== "#" && !project.isPrivate && (
+              <Button
+                href={project.githubUrl}
+                variant="outline"
+                size="small"
+                className="flex-1"
+              >
+                <Icon name="github" size="small" className="mr-1" />
+                Source Code
+              </Button>
+            )}
+            {project.isPrivate && (
+              <div className="flex-1 flex items-center justify-center text-gray-500 text-sm">
+                <span className="text-xs mr-1">🔒</span>
+                Private Repository
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </Card>

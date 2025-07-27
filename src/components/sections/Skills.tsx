@@ -69,29 +69,14 @@ const Skills: React.FC<SkillsProps> = ({ title, subtitle, description, skills })
               <div
                 key={index}
                 className={`cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 ${
-                  isExpanded ? 'ring-2 ring-blue-500 shadow-lg' : 'hover:shadow-md'
+                  isExpanded ? 'ring-2 ring-sky-400 shadow-lg' : 'hover:shadow-md'
                 }`}
                 onClick={() => toggleCard(index)}
               >
                 <Card className="h-full">
                   <div className="p-6">
-                    <div className="flex items-center justify-between mb-6">
-                      <H3 className="text-center text-blue-600 flex-1">{skillCategory.category}</H3>
-                      <div className={`ml-2 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
-                        <svg 
-                          className="w-5 h-5 text-blue-600" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round" 
-                            strokeWidth={2} 
-                            d="M19 9l-7 7-7-7" 
-                          />
-                        </svg>
-                      </div>
+                    <div className="text-center mb-6">
+                      <H3 className="text-gray-900">{skillCategory.category}</H3>
                     </div>
                     
                     <div className={`relative ${isExpanded ? 'transition-all duration-500 ease-in-out h-auto min-h-24' : 'h-24'}`}>
@@ -108,7 +93,7 @@ const Skills: React.FC<SkillsProps> = ({ title, subtitle, description, skills })
                                 animationDelay: isExpanded ? `${techIndex * 50}ms` : '0ms'
                               }}
                             >
-                              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                              <div className="w-2 h-2 bg-sky-400 rounded-full mr-3"></div>
                               <span className="text-gray-700 font-medium">{tech}</span>
                             </div>
                           ))}
@@ -119,12 +104,27 @@ const Skills: React.FC<SkillsProps> = ({ title, subtitle, description, skills })
                       <div 
                         className={`${isExpanded ? 'transition-all duration-500 ease-in-out opacity-0 transform scale-95 -translate-y-2 pointer-events-none absolute inset-0 flex flex-col justify-center items-center' : 'opacity-100 transform scale-100 translate-y-0 absolute inset-0 flex flex-col justify-center items-center'}`}
                       >
-                        <div className="text-center text-blue-600">
+                        <div className="text-center text-sky-400">
                           <div className="text-4xl font-bold mb-1">
                             {skillCategory.technologies.length}
                           </div>
-                          <div className="text-sm font-medium">
+                          <div className="text-sm font-medium text-gray-900 mb-2">
                             skills
+                          </div>
+                          <div className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
+                            <svg 
+                              className="w-5 h-5 text-sky-400 mx-auto" 
+                              fill="none" 
+                              stroke="currentColor" 
+                              viewBox="0 0 24 24"
+                            >
+                              <path 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                strokeWidth={2} 
+                                d="M19 9l-7 7-7-7" 
+                              />
+                            </svg>
                           </div>
                         </div>
                       </div>

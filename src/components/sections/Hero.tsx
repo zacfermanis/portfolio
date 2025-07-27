@@ -40,12 +40,12 @@ const Hero: React.FC<HeroProps> = ({
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 to-cyan-100 relative overflow-hidden">
       <ThreeJSBackground enabled={true} quality="high" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           <div className="animate-fade-in">
-            <H1 className="mb-4 text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <H1 className="mb-4 text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-sky-400 to-cyan-500 bg-clip-text text-transparent">
               {name}
             </H1>
             <H2 className="text-xl md:text-2xl lg:text-3xl text-gray-600 mb-6 font-medium">
