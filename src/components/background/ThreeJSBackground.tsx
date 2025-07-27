@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
 interface AnimationConfig {
@@ -62,7 +62,7 @@ const ThreeJSBackground: React.FC<ThreeJSBackgroundProps> = ({
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const animationIdRef = useRef<number | null>(null)
   const particlesRef = useRef<THREE.Points | null>(null)
-  const [isInitialized, setIsInitialized] = useState(false)
+
   const frameCountRef = useRef(0)
   const mouseRef = useRef({ x: 0, y: 0, isMoving: false })
   const rippleRef = useRef({ x: 0, y: 0, strength: 0, time: 0 })
@@ -387,7 +387,6 @@ const ThreeJSBackground: React.FC<ThreeJSBackgroundProps> = ({
     console.log('ThreeJSBackground initialized successfully')
 
     animate()
-    setIsInitialized(true)
 
     // Cleanup function
     return () => {

@@ -109,11 +109,11 @@ describe('Projects', () => {
     fireEvent.click(webButton)
     
     // Web button should have primary variant (active)
-    expect(webButton).toHaveClass('bg-blue-600', 'text-white')
+    expect(webButton).toHaveClass('bg-sky-400', 'text-white')
     
     // All button should have outline variant (inactive)
     const allButton = screen.getByRole('button', { name: /all/i })
-    expect(allButton).toHaveClass('border-2', 'border-blue-600', 'text-blue-600')
+    expect(allButton).toHaveClass('border-2', 'border-sky-400', 'text-sky-400')
   })
 
   it('shows no projects message when no projects exist', () => {

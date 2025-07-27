@@ -8,13 +8,13 @@ describe('Button', () => {
     render(<Button>Click me</Button>)
     const button = screen.getByRole('button', { name: /click me/i })
     expect(button).toBeInTheDocument()
-    expect(button).toHaveClass('bg-blue-600', 'text-white', 'px-4', 'py-2')
+    expect(button).toHaveClass('bg-sky-400', 'text-white', 'px-4', 'py-2')
   })
 
   it('renders with primary variant', () => {
     render(<Button variant="primary">Primary Button</Button>)
     const button = screen.getByRole('button', { name: /primary button/i })
-    expect(button).toHaveClass('bg-blue-600', 'text-white')
+    expect(button).toHaveClass('bg-sky-400', 'text-white')
   })
 
   it('renders with secondary variant', () => {
@@ -26,7 +26,7 @@ describe('Button', () => {
   it('renders with outline variant', () => {
     render(<Button variant="outline">Outline Button</Button>)
     const button = screen.getByRole('button', { name: /outline button/i })
-    expect(button).toHaveClass('border-2', 'border-blue-600', 'text-blue-600')
+    expect(button).toHaveClass('border-2', 'border-sky-400', 'text-sky-400')
   })
 
   it('renders with small size', () => {

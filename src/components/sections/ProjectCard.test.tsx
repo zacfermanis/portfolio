@@ -115,7 +115,7 @@ describe('ProjectCard', () => {
     render(<ProjectCard project={featuredProject} />)
     
     const featuredBadge = screen.getByText('Featured')
-    expect(featuredBadge).toHaveClass('bg-blue-600', 'text-white', 'px-2', 'py-1', 'rounded-full', 'text-xs', 'font-medium')
+    expect(featuredBadge).toHaveClass('bg-sky-400', 'text-white', 'px-2', 'py-1', 'rounded-full', 'text-xs', 'font-medium')
   })
 
   it('renders with proper card structure', () => {

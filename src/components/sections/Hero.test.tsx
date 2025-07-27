@@ -134,13 +134,13 @@ describe('Hero', () => {
     const { container } = render(<Hero {...defaultProps} />)
     
     const section = container.querySelector('section')
-    expect(section).toHaveClass('bg-gradient-to-br', 'from-blue-50', 'to-indigo-100')
+    expect(section).toHaveClass('bg-gradient-to-br', 'from-sky-50', 'to-cyan-100')
   })
 
   it('renders gradient text for name', () => {
     render(<Hero {...defaultProps} />)
     
     const nameHeading = screen.getByRole('heading', { level: 1 })
-    expect(nameHeading).toHaveClass('bg-gradient-to-r', 'from-blue-600', 'to-indigo-600', 'bg-clip-text', 'text-transparent')
+    expect(nameHeading).toHaveClass('bg-gradient-to-r', 'from-sky-400', 'to-cyan-500', 'bg-clip-text', 'text-transparent')
   })
 }) 

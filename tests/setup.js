@@ -82,6 +82,19 @@ jest.mock('three', () => ({
     geometry: {},
     material: {},
   })),
+  PointsMaterial: jest.fn().mockImplementation(() => ({
+    color: {},
+    size: 10,
+    transparent: true,
+    opacity: 0.4,
+    sizeAttenuation: true,
+    map: {},
+    blending: 'additive',
+    depthWrite: false,
+  })),
+  CanvasTexture: jest.fn().mockImplementation(() => ({
+    needsUpdate: false,
+  })),
   Color: jest.fn(),
   AdditiveBlending: 'additive',
 }));
@@ -108,8 +121,16 @@ HTMLCanvasElement.prototype.getContext = jest.fn().mockReturnValue({
   rotate: jest.fn(),
   arc: jest.fn(),
   fill: jest.fn(),
+  fillStyle: '',
   measureText: jest.fn(() => ({ width: 0 })),
   clearRect: jest.fn(),
+  fillRect: jest.fn(),
+  createRadialGradient: jest.fn().mockReturnValue({
+    addColorStop: jest.fn(),
+  }),
+  createLinearGradient: jest.fn().mockReturnValue({
+    addColorStop: jest.fn(),
+  }),
   removeEventListener: jest.fn(),
   addEventListener: jest.fn(),
   dispatchEvent: jest.fn(),

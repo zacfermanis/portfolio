@@ -13,7 +13,7 @@ interface Project {
   liveUrl?: string
   githubUrl?: string
   featured?: boolean
-  category: 'web' | 'mobile' | 'backend' | 'ai' | 'other'
+  category: 'web' | 'mobile' | 'backend' | 'ai' | 'games' | 'other'
 }
 
 interface ProjectsProps {

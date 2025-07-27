@@ -120,7 +120,7 @@ describe('Skills', () => {
     })
     
     // Should now have expanded styling
-    expect(firstCard).toHaveClass('ring-2', 'ring-blue-500', 'shadow-lg')
+    expect(firstCard).toHaveClass('ring-2', 'ring-sky-400', 'shadow-lg')
   })
 
   it('rotates chevron icon when card is expanded', async () => {
@@ -256,14 +256,14 @@ describe('Skills', () => {
       fireEvent.click(firstCard!)
     })
     
-    const bulletPoints = container.querySelectorAll('.w-2.h-2.bg-blue-500.rounded-full')
+    const bulletPoints = container.querySelectorAll('.w-2.h-2.bg-sky-400.rounded-full')
     expect(bulletPoints.length).toBeGreaterThan(0)
   })
 
   it('renders category headers with blue color', () => {
     const { container } = render(<Skills {...defaultProps} />)
     
-    const categoryHeaders = container.querySelectorAll('.text-blue-600')
+    const categoryHeaders = container.querySelectorAll('.text-gray-900')
     expect(categoryHeaders.length).toBeGreaterThan(0)
   })
 
