@@ -25,19 +25,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   }
 
   return (
-    <Card hover className="h-full flex flex-col">
-      {/* Fixed Layout Structure */}
+    <Card hover className="h-full flex flex-col project-card" padding="small">
+      {/* Flexible Layout Structure */}
       <div className="flex flex-col h-full">
-        {/* Logo Section - Fixed Height */}
-        <div className="h-48 relative overflow-hidden rounded-t-lg">
+        {/* Logo Section - Fixed Height for desktop, flexible for mobile */}
+        <div className="h-48 md:h-48 relative overflow-hidden rounded-t-lg project-card-section">
           {project.image ? (
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-48 object-contain bg-gray-50 transition-transform duration-300 hover:scale-105 rounded-t-lg p-4"
+              className="w-full h-full object-contain bg-gray-50 transition-transform duration-300 hover:scale-105 rounded-t-lg p-4"
             />
           ) : (
-            <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center">
+            <div className="w-full h-full bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center">
               <div className="text-center">
                 <div className="text-4xl mb-2">🚀</div>
                 <div className="text-gray-600 text-sm font-medium">{project.title}</div>
@@ -55,22 +55,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               Private
             </div>
           )}
-
         </div>
 
-        {/* Title Section - Fixed Height */}
-        <div className="p-6 pb-2">
-          <H3 className="h-16 flex items-center justify-center text-center">{project.title}</H3>
+        {/* Title Section - Flexible Height */}
+        <div className="pt-4 pb-2 project-card-section">
+          <H3 className="min-h-[4rem] flex items-center justify-center text-center leading-tight">{project.title}</H3>
         </div>
 
-        {/* Screenshot Section - Fixed Height */}
-        <div className="px-6 pb-2 h-48 mb-2">
+        {/* Screenshot Section - Uniform height for desktop/tablet, flexible for mobile */}
+        <div className="project-screenshot">
           {/* EET Screenshot - Only for Elegant Elephant Travel project */}
           {project.id === "elegant-elephant" && (
             <img
               src="/EET.png"
               alt="Elegant Elephant Travel Website Screenshot"
-              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+              className="w-full h-48 md:h-full object-contain rounded-lg shadow-md bg-gray-50"
             />
           )}
           
@@ -79,7 +78,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <img
               src="/MemoryBankSite.png"
               alt="Memory Bank for Agents Website Screenshot"
-              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+              className="w-full h-48 md:h-full object-contain rounded-lg shadow-md bg-gray-50"
             />
           )}
           
@@ -88,7 +87,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <img
               src="/TetrisPic.png"
               alt="AI-GA Tetris Game Screenshot"
-              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+              className="w-full h-48 md:h-full object-contain rounded-lg shadow-md bg-gray-50"
             />
           )}
           
@@ -97,7 +96,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <img
               src="/badNeighbor screenshot.png"
               alt="Bad Neighbor Game Screenshot"
-              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+              className="w-full h-48 md:h-full object-contain rounded-lg shadow-md bg-gray-50"
             />
           )}
           
@@ -106,7 +105,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <img
               src="/fermanisAndSonsScreenshot.png"
               alt="Fermanis & Sons Lawn Care Website Screenshot"
-              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+              className="w-full h-48 md:h-full object-contain rounded-lg shadow-md bg-gray-50"
             />
           )}
           
@@ -115,14 +114,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <img
               src="/thisSite.png"
               alt="Personal Portfolio Website Screenshot"
-              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+              className="w-full h-48 md:h-full object-contain rounded-lg shadow-md bg-gray-50"
             />
           )}
         </div>
 
-        {/* Content Section - Flexible */}
-        <div className="px-6 pb-6 flex-1 flex flex-col">
-          <P variant="small" className="mb-4 flex-1">
+        {/* Content Section - Flexible with improved spacing */}
+        <div className="flex-1 flex flex-col project-card-section">
+          <P variant="small" className="mb-4 flex-1 project-description">
             {project.description}
           </P>
 

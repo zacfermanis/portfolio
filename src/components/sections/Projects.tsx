@@ -64,8 +64,8 @@ const Projects: React.FC<ProjectsProps> = ({ title, subtitle, projects }) => {
           ))}
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Projects Grid - Improved responsive layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {filteredProjects.map(project => (
             <ProjectCard key={project.id} project={project} />
           ))}

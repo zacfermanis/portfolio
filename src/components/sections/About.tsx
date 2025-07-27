@@ -90,7 +90,7 @@ const About: React.FC<AboutProps> = ({
 
             {/* Image */}
             {image && (
-              <div className="relative flex justify-center">
+              <div className="relative flex justify-center overflow-hidden">
                 <div className="relative z-10 max-w-lg">
                   <img
                     src={image}
@@ -122,7 +122,7 @@ const About: React.FC<AboutProps> = ({
       </div>
 
       {/* CV Details - Full Width Section */}
-      <div className="mt-20 -mx-4 sm:-mx-6 lg:-mx-8">
+      <div className="mt-20 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <CVDetails cvData={cvData} />
         </div>

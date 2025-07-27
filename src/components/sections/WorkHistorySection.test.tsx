@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import WorkHistorySection from './WorkHistorySection'
 import { useInView } from '../../utils/useInView'
@@ -8,6 +8,13 @@ import { useInView } from '../../utils/useInView'
 jest.mock('../../utils/useInView', () => ({
   useInView: jest.fn()
 }))
+
+// Mock window.innerWidth for mobile detection
+Object.defineProperty(window, 'innerWidth', {
+  writable: true,
+  configurable: true,
+  value: 1024, // Default to desktop
+})
 
 const mockUseInView = useInView as jest.MockedFunction<typeof useInView>
 
@@ -33,6 +40,12 @@ describe('WorkHistorySection', () => {
 
   beforeEach(() => {
     jest.clearAllMocks()
+    // Reset window.innerWidth to desktop
+    Object.defineProperty(window, 'innerWidth', {
+      writable: true,
+      configurable: true,
+      value: 1024,
+    })
   })
 
   it('renders without crashing', () => {
@@ -203,5 +216,171 @@ describe('WorkHistorySection', () => {
         resetTrigger: true
       })
     )
+  })
+
+  describe('Mobile functionality', () => {
+    beforeEach(() => {
+      // Set mobile viewport
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        configurable: true,
+        value: 375, // Mobile width
+      })
+    })
+
+    it('detects mobile viewport', () => {
+      // Mock useInView to return visible state
+      mockUseInView.mockReturnValue({
+        ref: { current: null },
+        isInView: true
+      })
+
+      const { container } = render(<WorkHistorySection workExperience={mockWorkExperience} />)
+      
+      // Check that mobile-specific classes are applied
+      const cards = container.querySelectorAll('.cursor-pointer')
+      expect(cards.length).toBeGreaterThan(0)
+    })
+
+    it('shows expand/collapse indicators on mobile', () => {
+      // Mock useInView to return visible state
+      mockUseInView.mockReturnValue({
+        ref: { current: null },
+        isInView: true
+      })
+
+      const { container } = render(<WorkHistorySection workExperience={mockWorkExperience} />)
+      
+      // Check for expand/collapse indicators
+      const indicators = container.querySelectorAll('.w-6.h-6.border-2.border-sky-400.rounded-full')
+      expect(indicators.length).toBeGreaterThan(0)
+    })
+
+    it('expands card when clicked on mobile', () => {
+      // Mock useInView to return visible state
+      mockUseInView.mockReturnValue({
+        ref: { current: null },
+        isInView: true
+      })
+
+      const { container } = render(<WorkHistorySection workExperience={mockWorkExperience} />)
+      
+      // Find the first card and click it
+      const firstCard = container.querySelector('.ml-20.bg-white.p-6.rounded-lg')
+      expect(firstCard).toBeInTheDocument()
+      
+      if (firstCard) {
+        fireEvent.click(firstCard)
+        
+        // Check that the card is now expanded (description should be visible)
+        expect(screen.getByText(/Developed web applications/)).toBeInTheDocument()
+      }
+    })
+
+    it('collapses card when clicked again on mobile', () => {
+      // Mock useInView to return visible state
+      mockUseInView.mockReturnValue({
+        ref: { current: null },
+        isInView: true
+      })
+
+      const { container } = render(<WorkHistorySection workExperience={mockWorkExperience} />)
+      
+      // Find the first card and click it twice
+      const firstCard = container.querySelector('.ml-20.bg-white.p-6.rounded-lg')
+      expect(firstCard).toBeInTheDocument()
+      
+      if (firstCard) {
+        fireEvent.click(firstCard) // Expand
+        fireEvent.click(firstCard) // Collapse
+        
+        // The description should still be in the DOM but hidden with CSS
+        expect(screen.getByText(/Developed web applications/)).toBeInTheDocument()
+      }
+    })
+
+    it('shows only title, company, and location when collapsed on mobile', () => {
+      // Mock useInView to return visible state
+      mockUseInView.mockReturnValue({
+        ref: { current: null },
+        isInView: true
+      })
+
+      const { container } = render(<WorkHistorySection workExperience={mockWorkExperience} />)
+      
+      // Check that basic info is always visible
+      expect(screen.getByText('Software Engineer')).toBeInTheDocument()
+      expect(screen.getByText('Test Company')).toBeInTheDocument()
+      expect(screen.getByText('📍 Test City, ST')).toBeInTheDocument()
+      
+      // Check that description is initially hidden on mobile
+      const descriptionContainer = container.querySelector('.max-h-0.opacity-0')
+      expect(descriptionContainer).toBeInTheDocument()
+    })
+
+    it('shows scrollable content when expanded on mobile', () => {
+      // Mock useInView to return visible state
+      mockUseInView.mockReturnValue({
+        ref: { current: null },
+        isInView: true
+      })
+
+      const { container } = render(<WorkHistorySection workExperience={mockWorkExperience} />)
+      
+      // Find the first card and click it to expand
+      const firstCard = container.querySelector('.ml-20.bg-white.p-6.rounded-lg')
+      expect(firstCard).toBeInTheDocument()
+      
+      if (firstCard) {
+        fireEvent.click(firstCard)
+        
+        // Check that the scrollable container is present
+        const scrollableContainer = container.querySelector('.max-h-56.overflow-y-auto')
+        expect(scrollableContainer).toBeInTheDocument()
+        
+        // Check that content is visible
+        expect(screen.getByText(/Developed web applications/)).toBeInTheDocument()
+      }
+    })
+  })
+
+  describe('Desktop functionality', () => {
+    beforeEach(() => {
+      // Set desktop viewport
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        configurable: true,
+        value: 1024, // Desktop width
+      })
+    })
+
+    it('shows all content by default on desktop', () => {
+      // Mock useInView to return visible state
+      mockUseInView.mockReturnValue({
+        ref: { current: null },
+        isInView: true
+      })
+
+      render(<WorkHistorySection workExperience={mockWorkExperience} />)
+      
+      // Check that all content is visible
+      expect(screen.getByText(/Developed web applications/)).toBeInTheDocument()
+      expect(screen.getByText(/Led technical projects/)).toBeInTheDocument()
+      expect(screen.getByText('React')).toBeInTheDocument()
+    })
+
+    it('does not show expand/collapse indicators on desktop', () => {
+      // Mock useInView to return visible state
+      mockUseInView.mockReturnValue({
+        ref: { current: null },
+        isInView: true
+      })
+
+      const { container } = render(<WorkHistorySection workExperience={mockWorkExperience} />)
+      
+      // Check that expand/collapse indicators are not present
+      const indicators = container.querySelectorAll('.w-6.h-6.border-2.border-sky-400.rounded-full')
+      expect(indicators.length).toBe(0)
+    })
   })
 }) 

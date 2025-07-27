@@ -47,7 +47,7 @@ const Skills: React.FC<SkillsProps> = ({ title, subtitle, description, skills })
   }
 
   return (
-    <section id="skills" className="py-20 bg-white">
+    <section id="skills" className="py-20 bg-white overflow-hidden">
       <style dangerouslySetInnerHTML={{ __html: skillAnimationStyles }} />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -68,18 +68,18 @@ const Skills: React.FC<SkillsProps> = ({ title, subtitle, description, skills })
             return (
               <div
                 key={index}
-                className={`cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 ${
+                className={`cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 overflow-hidden m-4 ${
                   isExpanded ? 'ring-2 ring-sky-400 shadow-lg' : 'hover:shadow-md'
                 }`}
                 onClick={() => toggleCard(index)}
               >
-                <Card className="h-full">
-                  <div className="p-6">
+                <Card className="h-full overflow-hidden">
+                  <div className="p-6 overflow-hidden">
                     <div className="text-center mb-6">
                       <H3 className="text-gray-900">{skillCategory.category}</H3>
                     </div>
                     
-                    <div className={`relative ${isExpanded ? 'transition-all duration-500 ease-in-out h-auto min-h-24' : 'h-24'}`}>
+                    <div className={`relative overflow-hidden ${isExpanded ? 'transition-all duration-500 ease-in-out h-auto min-h-24' : 'h-24'}`}>
                       {/* Skills List - Animated */}
                       <div 
                         className={`${isExpanded ? 'transition-all duration-500 ease-in-out opacity-100 transform translate-y-0 relative' : 'opacity-0 transform translate-y-4 pointer-events-none absolute inset-0'}`}
