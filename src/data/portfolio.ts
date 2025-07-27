@@ -128,6 +128,18 @@ export const projectsData = {
       category: "web" as const,
       categories: ["web"] as const
     },
+    {
+      id: "portfolio",
+      title: "Personal Portfolio Website",
+      description: "Modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. Features smooth animations, interactive components, and a clean design showcasing professional experience and projects. Includes contact form, resume download functionality, and optimized performance.",
+      image: "/Me_Transparent_Drawn.png",
+      technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Three.js", "Jest", "Testing Library", "Responsive Design", "Performance Optimization"],
+      liveUrl: "https://zacfermanis.com",
+      githubUrl: "https://github.com/zacfermanis/portfolio",
+      featured: true,
+      category: "web" as const,
+      categories: ["web"] as const
+    },
 
   ]
 }

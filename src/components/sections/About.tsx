@@ -1,5 +1,7 @@
-import React from 'react'
-import { H2, H3, P, Button } from '@/components/ui'
+"use client"
+
+import React, { useState } from 'react'
+import { H2, H3, P, Button, Modal } from '@/components/ui'
 import Icon from '../ui/Icon'
 import CVDetails from './CVDetails'
 import { cvData } from '../../data/portfolio'
@@ -21,6 +23,20 @@ const About: React.FC<AboutProps> = ({
   image,
   resumeUrl
 }) => {
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false)
+
+  const handleDownloadResume = (format: 'pdf' | 'docx' | 'rtf') => {
+    const fileMap = {
+      pdf: '/Zac_Fermanis-Resume.pdf',
+      docx: '/Zac_Fermanis-Resume.docx',
+      rtf: '/Zac_Fermanis-Resume.rtf'
+    }
+    
+    const url = fileMap[format]
+    window.open(url, '_blank')
+    setIsResumeModalOpen(false)
+  }
+
   return (
     <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,7 +75,7 @@ const About: React.FC<AboutProps> = ({
               {resumeUrl && (
                 <div className="pt-6 text-center">
                   <Button 
-                    href={resumeUrl} 
+                    onClick={() => setIsResumeModalOpen(true)}
                     variant="secondary" 
                     size="large"
                   >
@@ -111,6 +127,70 @@ const About: React.FC<AboutProps> = ({
           <CVDetails cvData={cvData} />
         </div>
       </div>
+
+      {/* Resume Download Modal */}
+      <Modal
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+        title="Download Resume"
+        showCloseButton={true}
+      >
+        <div className="space-y-4">
+          <P className="text-gray-600 mb-6">
+            Choose your preferred format to download my resume:
+          </P>
+          
+          <div className="space-y-3">
+            <button
+              onClick={() => handleDownloadResume('pdf')}
+              className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-sky-400 hover:bg-sky-50 transition-all duration-200 group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
+                  <Icon name="file" size="medium" className="text-red-600" />
+                </div>
+                <div className="text-left">
+                  <div className="font-medium text-gray-900">PDF Format</div>
+                  <div className="text-sm text-gray-500">Best for printing and sharing</div>
+                </div>
+              </div>
+              <Icon name="external-link" size="small" className="text-gray-400 group-hover:text-sky-400 transition-colors" />
+            </button>
+
+            <button
+              onClick={() => handleDownloadResume('docx')}
+              className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-sky-400 hover:bg-sky-50 transition-all duration-200 group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                  <Icon name="file" size="medium" className="text-blue-600" />
+                </div>
+                <div className="text-left">
+                  <div className="font-medium text-gray-900">Word Document</div>
+                  <div className="text-sm text-gray-500">Editable format for Microsoft Word</div>
+                </div>
+              </div>
+              <Icon name="external-link" size="small" className="text-gray-400 group-hover:text-sky-400 transition-colors" />
+            </button>
+
+            <button
+              onClick={() => handleDownloadResume('rtf')}
+              className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-sky-400 hover:bg-sky-50 transition-all duration-200 group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                  <Icon name="file" size="medium" className="text-green-600" />
+                </div>
+                <div className="text-left">
+                  <div className="font-medium text-gray-900">RTF Format</div>
+                  <div className="text-sm text-gray-500">Rich text format for compatibility</div>
+                </div>
+              </div>
+              <Icon name="external-link" size="small" className="text-gray-400 group-hover:text-sky-400 transition-colors" />
+            </button>
+          </div>
+        </div>
+      </Modal>
     </section>
   )
 }

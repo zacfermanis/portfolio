@@ -109,6 +109,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
             />
           )}
+          
+          {/* Portfolio Screenshot - Only for Portfolio project */}
+          {project.id === "portfolio" && (
+            <img
+              src="/thisSite.png"
+              alt="Personal Portfolio Website Screenshot"
+              className="w-full h-48 object-contain rounded-lg shadow-md bg-gray-50"
+            />
+          )}
         </div>
 
         {/* Content Section - Flexible */}

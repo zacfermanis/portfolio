@@ -86,8 +86,8 @@ describe('About', () => {
     
     const resumeButton = screen.getByText('Download Resume')
     expect(resumeButton).toBeInTheDocument()
-    // Check that the button is a link element (Next.js Link renders as <a>)
-    expect(resumeButton.closest('a')).toBeInTheDocument()
+    // Check that the button is a button element (now uses onClick handler)
+    expect(resumeButton.closest('button')).toBeInTheDocument()
   })
 
   it('displays experience statistics', () => {
