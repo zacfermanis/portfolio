@@ -1,5 +1,5 @@
-import React from 'react'
-import { Card, H3, P, Button, Icon } from '@/components/ui'
+import React, { useState } from 'react'
+import { Card, H3, P, Button, Icon, Modal } from '@/components/ui'
 
 interface Project {
   id: string
@@ -18,6 +18,12 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handlePlayClick = () => {
+    setIsModalOpen(true)
+  }
+
   return (
     <Card hover className="h-full flex flex-col">
       {/* Fixed Layout Structure */}
@@ -49,11 +55,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               Private
             </div>
           )}
+
         </div>
 
         {/* Title Section - Fixed Height */}
         <div className="p-6 pb-2">
-          <H3 className="h-16 flex items-center">{project.title}</H3>
+          <H3 className="h-16 flex items-center justify-center text-center">{project.title}</H3>
         </div>
 
         {/* Screenshot Section - Fixed Height */}
@@ -124,6 +131,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
           {/* Action Buttons */}
           <div className="flex gap-3 mt-auto">
+            {/* Live Site Button - Left side */}
             {project.liveUrl && project.liveUrl !== "#" && (
               <Button
                 href={project.liveUrl}
@@ -136,26 +144,83 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 Live Site
               </Button>
             )}
-            {project.githubUrl && project.githubUrl !== "#" && !project.isPrivate && (
-              <Button
-                href={project.githubUrl}
-                variant="outline"
-                size="small"
-                className="flex-1"
-              >
-                <Icon name="github" size="small" className="mr-1" />
-                Source Code
-              </Button>
+            
+            {/* Bad Neighbor specific buttons */}
+            {project.id === "bad-neighbor" && (
+              <>
+                <Button
+                  onClick={handlePlayClick}
+                  variant="primary"
+                  size="small"
+                  className="flex-1"
+                >
+                  <Icon name="play" size="small" className="mr-1" />
+                  Play
+                </Button>
+                <Button
+                  disabled={true}
+                  variant="outline"
+                  size="small"
+                  className="flex-1 opacity-50 cursor-not-allowed"
+                >
+                  Source Code
+                  <span className="ml-2 text-xs">🔒</span>
+                  <span className="ml-1 text-xs">Private</span>
+                </Button>
+              </>
             )}
-            {project.isPrivate && (
-              <div className="flex-1 flex items-center justify-center text-gray-500 text-sm">
-                <span className="text-xs mr-1">🔒</span>
-                Private Repository
-              </div>
+            
+            {/* Source Code Button - Right side (for non-Bad Neighbor projects) */}
+            {project.id !== "bad-neighbor" && (
+              <>
+                {project.githubUrl && project.githubUrl !== "#" && !project.isPrivate && (
+                  <Button
+                    href={project.githubUrl}
+                    external={true}
+                    variant="outline"
+                    size="small"
+                    className="flex-1"
+                  >
+                    <Icon name="github" size="small" className="mr-1" />
+                    Source Code
+                  </Button>
+                )}
+                {project.isPrivate && (
+                  <Button
+                    disabled={true}
+                    variant="outline"
+                    size="small"
+                    className="flex-1 opacity-50 cursor-not-allowed"
+                  >
+                    Source Code
+                    <span className="ml-2 text-xs">🔒</span>
+                    <span className="ml-1 text-xs">Private</span>
+                  </Button>
+                )}
+              </>
             )}
-          </div>
         </div>
       </div>
+      </div>
+      
+      {/* Bad Neighbor Modal */}
+      {project.id === "bad-neighbor" && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Bad Neighbor Game"
+        >
+          <div className="text-center">
+            <div className="text-6xl mb-4">🚧</div>
+            <p className="text-lg text-gray-700 mb-4">
+              Game is currently being developed. Coming Soon!
+            </p>
+            <p className="text-sm text-gray-500">
+              This LUA-based game using the Love2D framework is in active development.
+            </p>
+          </div>
+        </Modal>
+      )}
     </Card>
   )
 }

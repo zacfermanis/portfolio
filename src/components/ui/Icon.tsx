@@ -72,6 +72,11 @@ const Icon: React.FC<IconProps> = ({
         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
       </svg>
     ),
+    x: (
+      <svg viewBox="0 0 24 24" className={classes} fill="currentColor">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    ),
     music: (
       <svg viewBox="0 0 24 24" className={classes} fill="currentColor">
         <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
@@ -80,6 +85,11 @@ const Icon: React.FC<IconProps> = ({
     'external-link': (
       <svg viewBox="0 0 24 24" className={classes} fill="currentColor">
         <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+      </svg>
+    ),
+    play: (
+      <svg viewBox="0 0 24 24" className={classes} fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
       </svg>
     )
   }
