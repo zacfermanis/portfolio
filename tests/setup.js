@@ -30,6 +30,11 @@ jest.mock('next/image', () => ({
   },
 }));
 
+// Mock ThreeJSBackground component
+jest.mock('@/components/background', () => ({
+  ThreeJSBackground: () => React.createElement('div', { 'data-testid': 'threejs-background' }),
+}));
+
 // Mock window.matchMedia for tests
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -153,7 +158,42 @@ console.error = (...args) => {
     if (message.includes('Not implemented: HTMLCanvasElement.prototype.getContext')) {
       return;
     }
+    if (message.includes('Warning: ReactDOM.render is no longer supported')) {
+      return;
+    }
+    if (message.includes('Warning: React.createElement: type is invalid')) {
+      return;
+    }
+    if (message.includes('Warning: React does not recognize the')) {
+      return;
+    }
+    if (message.includes('Warning: Invalid DOM property')) {
+      return;
+    }
+    if (message.includes('Warning: Unknown event handler property')) {
+      return;
+    }
   }
   // For all other errors, call the original
   originalError.apply(console, args);
 };
+
+// Suppress console.log for ThreeJSBackground in tests
+const originalLog = console.log;
+console.log = (...args) => {
+  const message = args[0];
+  if (typeof message === 'string') {
+    if (message.includes('ThreeJSBackground')) {
+      return;
+    }
+  }
+  // For all other logs, call the original
+  originalLog.apply(console, args);
+};
+
+// Mock IntersectionObserver globally
+global.IntersectionObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));

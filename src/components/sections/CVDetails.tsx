@@ -44,7 +44,8 @@ const CVDetails: React.FC<CVDetailsProps> = ({ cvData }) => {
             firstHeadingRef={firstHeadingRef}
           />
           <WorkHistorySection 
-            workExperience={cvData.workExperience} 
+            workExperience={cvData.workExperience}
+            isExpanded={isExpanded}
           />
         </div>
       </CVDetailsPanel>
