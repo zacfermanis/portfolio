@@ -4,7 +4,7 @@ import Icon from '../ui/Icon'
 
 const BandSection: React.FC = () => {
   return (
-    <section className="py-16 bg-blue-50 border-t border-blue-100">
+    <section id="band" className="py-16 bg-blue-50 border-t border-blue-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center">

@@ -370,6 +370,22 @@ const Contact: React.FC<ContactProps> = ({
           </div>
         </div>
       </div>
+      
+      {/* Scroll Arrow */}
+      <div className="flex justify-center mt-12">
+        <button
+          onClick={() => {
+            const bandSection = document.getElementById('band')
+            if (bandSection) {
+              bandSection.scrollIntoView({ behavior: 'smooth' })
+            }
+          }}
+          className="p-3 rounded-full bg-white/80 hover:bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border border-slate-200"
+          aria-label="Scroll to band section"
+        >
+          <Icon name="arrow" size="large" className="text-sky-400" />
+        </button>
+      </div>
       </div>
     </section>
   )
