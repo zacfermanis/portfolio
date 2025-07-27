@@ -55,11 +55,6 @@ const About: React.FC<AboutProps> = ({
                 </div>
               </div>
 
-              {/* CV Details */}
-              <div className="pt-4">
-                <CVDetails cvData={cvData} />
-              </div>
-
               {/* CTA Button */}
               {resumeUrl && (
                 <div className="pt-6 text-center">
@@ -80,14 +75,14 @@ const About: React.FC<AboutProps> = ({
             {/* Image */}
             {image && (
               <div className="relative flex justify-center">
-                <div className="relative z-10 max-w-sm">
+                <div className="relative z-10 max-w-lg">
                   <img
                     src={image}
                     alt="Professional headshot"
-                    className="w-full h-auto rounded-lg shadow-xl max-w-xs"
+                    className="w-full h-auto rounded-lg shadow-xl max-w-md"
                   />
                 </div>
-                <div className="absolute -bottom-4 -right-4 w-full h-full bg-blue-200 rounded-lg -z-10 max-w-sm"></div>
+                <div className="absolute -bottom-4 -right-4 w-full h-full bg-blue-200 rounded-lg -z-10 max-w-lg"></div>
               </div>
             )}
           </div>
@@ -107,6 +102,13 @@ const About: React.FC<AboutProps> = ({
               <P variant="small" className="text-gray-600">Annual Revenue Generated</P>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* CV Details - Full Width Section */}
+      <div className="mt-20 -mx-4 sm:-mx-6 lg:-mx-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <CVDetails cvData={cvData} />
         </div>
       </div>
     </section>

@@ -84,6 +84,18 @@ describe('Icon', () => {
     expect(icon).toBeInTheDocument()
   })
 
+  it('renders music icon', () => {
+    render(<Icon name="music" />)
+    const icon = screen.getByRole('img', { name: /music/i })
+    expect(icon).toBeInTheDocument()
+  })
+
+  it('renders external-link icon', () => {
+    render(<Icon name="external-link" />)
+    const icon = screen.getByRole('img', { name: /external-link/i })
+    expect(icon).toBeInTheDocument()
+  })
+
   it('renders fallback for unknown icon', () => {
     render(<Icon name="unknown" />)
     const icon = screen.getByRole('img', { name: /unknown/i })

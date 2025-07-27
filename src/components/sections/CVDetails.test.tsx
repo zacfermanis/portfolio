@@ -31,10 +31,8 @@ describe('CVDetails', () => {
     const libertyMutualEntries = screen.getAllByText('Liberty Mutual')
     expect(libertyMutualEntries.length).toBeGreaterThan(0)
     expect(screen.getByText('Elegant Elephant Travel')).toBeInTheDocument()
-    expect(screen.getByText('Fidelity Investments')).toBeInTheDocument()
-    expect(screen.getByText('State Street Corporation')).toBeInTheDocument()
-    expect(screen.getByText('Bank of America')).toBeInTheDocument()
-    expect(screen.getByText('Wachovia Bank')).toBeInTheDocument()
+    expect(screen.getByText('Citigroup')).toBeInTheDocument()
+    expect(screen.getByText('Compaq Computer Co. / Hewlett Packard')).toBeInTheDocument()
   })
 
   it('displays correct number of work experience entries', async () => {
@@ -46,8 +44,8 @@ describe('CVDetails', () => {
       expandButton.click()
     })
     
-    // Should have 10 work experience entries (including Elegant Elephant Travel and all historical positions)
-    const workEntries = screen.getAllByText(/Solutions Engineer|Principal Software Developer|Software Developer|CTO & Co-Founder|Senior Software Engineer|Software Engineer|Associate Software Developer|Junior Developer/)
-    expect(workEntries).toHaveLength(10)
+    // Should have 6 work experience entries based on the corrected data
+    const workEntries = screen.getAllByText(/Solutions Engineer|Chief Technology Officer|Principal Software Engineer|Software Developer|Senior Programmer Analyst|Quality Assurance Engineer/)
+    expect(workEntries).toHaveLength(6)
   })
 }) 

@@ -160,7 +160,7 @@ describe('Projects', () => {
     const { container } = render(<Projects {...defaultProps} />)
     
     const section = container.querySelector('section')
-    expect(section).toHaveClass('py-20', 'bg-gray-50')
+    expect(section).toHaveClass('py-20', 'bg-gradient-to-br', 'from-blue-50', 'via-indigo-50', 'to-purple-50', 'border-t', 'border-slate-200', 'relative', 'overflow-hidden')
   })
 
   it('renders filter buttons with proper styling', () => {

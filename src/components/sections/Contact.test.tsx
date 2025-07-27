@@ -300,7 +300,10 @@ describe('Contact', () => {
     const { container } = render(<Contact {...defaultProps} />)
     
     expect(container.querySelector('.py-20')).toBeInTheDocument()
-    expect(container.querySelector('.bg-gray-50')).toBeInTheDocument()
+    expect(container.querySelector('.bg-gradient-to-br')).toBeInTheDocument()
+    expect(container.querySelector('.from-emerald-50')).toBeInTheDocument()
+    expect(container.querySelector('.via-teal-50')).toBeInTheDocument()
+    expect(container.querySelector('.to-cyan-50')).toBeInTheDocument()
   })
 
   it('renders with proper grid layout', () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent, act } from '@testing-library/react'
 import Skills from './Skills'
 
 describe('Skills', () => {
@@ -47,13 +47,144 @@ describe('Skills', () => {
     const backendElements = screen.getAllByText('Backend Development')
     const databaseElements = screen.getAllByText('Database & Cloud')
     
-    expect(frontendElements.length).toBe(2) // One in card header, one in summary
-    expect(backendElements.length).toBe(2) // One in card header, one in summary
-    expect(databaseElements.length).toBe(2) // One in card header, one in summary
+    expect(frontendElements.length).toBe(1) // One in card header
+    expect(backendElements.length).toBe(1) // One in card header
+    expect(databaseElements.length).toBe(1) // One in card header
   })
 
-  it('displays all technologies in each category', () => {
+  it('displays skill count when cards are collapsed', () => {
     render(<Skills {...defaultProps} />)
+    
+    const skillCounts = screen.getAllByText('5')
+    expect(skillCounts.length).toBe(3) // One for each skill category
+  })
+
+  it('shows technologies when card is expanded', async () => {
+    render(<Skills {...defaultProps} />)
+    
+    // Initially, technologies should be hidden (but present in DOM)
+    const reactElement = screen.getByText('React')
+    expect(reactElement).toBeInTheDocument()
+    expect(reactElement.closest('.opacity-0')).toBeInTheDocument()
+    
+    // Click on the first card to expand it
+    const cards = screen.getAllByText('Frontend Development')
+    const firstCard = cards[0].closest('.cursor-pointer')
+    
+    await act(async () => {
+      fireEvent.click(firstCard!)
+    })
+    
+    // Now technologies should be visible
+    expect(reactElement.closest('.opacity-100')).toBeInTheDocument()
+    expect(screen.getByText('TypeScript')).toBeInTheDocument()
+    expect(screen.getByText('JavaScript')).toBeInTheDocument()
+  })
+
+  it('hides technologies when card is collapsed', async () => {
+    render(<Skills {...defaultProps} />)
+    
+    // Click on the first card to expand it
+    const cards = screen.getAllByText('Frontend Development')
+    const firstCard = cards[0].closest('.cursor-pointer')
+    
+    await act(async () => {
+      fireEvent.click(firstCard!)
+    })
+    
+    // Verify technologies are visible
+    const reactElement = screen.getByText('React')
+    expect(reactElement.closest('.opacity-100')).toBeInTheDocument()
+    
+    // Click again to collapse
+    await act(async () => {
+      fireEvent.click(firstCard!)
+    })
+    
+    // Technologies should be hidden again
+    expect(reactElement.closest('.opacity-0')).toBeInTheDocument()
+  })
+
+  it('shows visual indicators when cards are expanded', async () => {
+    render(<Skills {...defaultProps} />)
+    
+    const cards = screen.getAllByText('Frontend Development')
+    const firstCard = cards[0].closest('.cursor-pointer')
+    
+    // Initially should not have expanded styling
+    expect(firstCard).not.toHaveClass('ring-2', 'ring-blue-500', 'shadow-lg')
+    
+    // Click to expand
+    await act(async () => {
+      fireEvent.click(firstCard!)
+    })
+    
+    // Should now have expanded styling
+    expect(firstCard).toHaveClass('ring-2', 'ring-blue-500', 'shadow-lg')
+  })
+
+  it('rotates chevron icon when card is expanded', async () => {
+    render(<Skills {...defaultProps} />)
+    
+    const cards = screen.getAllByText('Frontend Development')
+    const firstCard = cards[0].closest('.cursor-pointer')
+    
+    // Find the chevron icon
+    const chevron = firstCard!.querySelector('svg')
+    expect(chevron).toBeInTheDocument()
+    
+    // Initially should not be rotated
+    expect(chevron!.parentElement).not.toHaveClass('rotate-180')
+    
+    // Click to expand
+    await act(async () => {
+      fireEvent.click(firstCard!)
+    })
+    
+    // Should now be rotated
+    expect(chevron!.parentElement).toHaveClass('rotate-180')
+  })
+
+  it('allows multiple cards to be expanded simultaneously', async () => {
+    render(<Skills {...defaultProps} />)
+    
+    const frontendCard = screen.getAllByText('Frontend Development')[0].closest('.cursor-pointer')
+    const backendCard = screen.getAllByText('Backend Development')[0].closest('.cursor-pointer')
+    
+    // Expand first card
+    await act(async () => {
+      fireEvent.click(frontendCard!)
+    })
+    
+    // Expand second card
+    await act(async () => {
+      fireEvent.click(backendCard!)
+    })
+    
+    // Both should show their technologies
+    expect(screen.getByText('React')).toBeInTheDocument()
+    expect(screen.getByText('Node.js')).toBeInTheDocument()
+  })
+
+  it('displays all technologies in each category when expanded', async () => {
+    render(<Skills {...defaultProps} />)
+    
+    // Expand all cards first
+    const frontendCard = screen.getAllByText('Frontend Development')[0].closest('.cursor-pointer')
+    const backendCard = screen.getAllByText('Backend Development')[0].closest('.cursor-pointer')
+    const databaseCard = screen.getAllByText('Database & Cloud')[0].closest('.cursor-pointer')
+    
+    await act(async () => {
+      fireEvent.click(frontendCard!)
+    })
+    
+    await act(async () => {
+      fireEvent.click(backendCard!)
+    })
+    
+    await act(async () => {
+      fireEvent.click(databaseCard!)
+    })
     
     // Frontend technologies
     expect(screen.getByText('React')).toBeInTheDocument()
@@ -99,11 +230,12 @@ describe('Skills', () => {
     expect(container.querySelector('.lg\\:grid-cols-3')).toBeInTheDocument()
   })
 
-  it('renders skills summary grid', () => {
+  it('renders skills grid with proper columns', () => {
     const { container } = render(<Skills {...defaultProps} />)
     
-    expect(container.querySelector('.grid-cols-2')).toBeInTheDocument()
-    expect(container.querySelector('.md\\:grid-cols-5')).toBeInTheDocument()
+    expect(container.querySelector('.grid-cols-1')).toBeInTheDocument()
+    expect(container.querySelector('.md\\:grid-cols-2')).toBeInTheDocument()
+    expect(container.querySelector('.lg\\:grid-cols-3')).toBeInTheDocument()
   })
 
   it('renders category cards with proper styling', () => {
@@ -113,8 +245,16 @@ describe('Skills', () => {
     expect(cards.length).toBeGreaterThan(0)
   })
 
-  it('renders technology items with bullet points', () => {
+  it('renders technology items with bullet points', async () => {
     const { container } = render(<Skills {...defaultProps} />)
+    
+    // Expand first card to see technologies
+    const cards = screen.getAllByText('Frontend Development')
+    const firstCard = cards[0].closest('.cursor-pointer')
+    
+    await act(async () => {
+      fireEvent.click(firstCard!)
+    })
     
     const bulletPoints = container.querySelectorAll('.w-2.h-2.bg-blue-500.rounded-full')
     expect(bulletPoints.length).toBeGreaterThan(0)
@@ -150,7 +290,7 @@ describe('Skills', () => {
     render(<Skills {...defaultProps} skills={skillsWithEmptyCategories} />)
     
     const emptyCategoryElements = screen.getAllByText('Empty Category')
-    expect(emptyCategoryElements.length).toBe(2) // One in the card header, one in the summary
+    expect(emptyCategoryElements.length).toBe(1) // One in the card header
   })
 
   it('renders with proper section structure', () => {
@@ -172,11 +312,18 @@ describe('Skills', () => {
     
     expect(container.querySelector('.mb-16')).toBeInTheDocument()
     expect(container.querySelector('.gap-8')).toBeInTheDocument()
-    expect(container.querySelector('.mt-16')).toBeInTheDocument()
   })
 
-  it('renders technology text with proper styling', () => {
+  it('renders technology text with proper styling', async () => {
     const { container } = render(<Skills {...defaultProps} />)
+    
+    // Expand first card to see technologies
+    const cards = screen.getAllByText('Frontend Development')
+    const firstCard = cards[0].closest('.cursor-pointer')
+    
+    await act(async () => {
+      fireEvent.click(firstCard!)
+    })
     
     const technologyTexts = container.querySelectorAll('.text-gray-700.font-medium')
     expect(technologyTexts.length).toBeGreaterThan(0)
@@ -185,7 +332,7 @@ describe('Skills', () => {
   it('renders summary numbers with proper styling', () => {
     const { container } = render(<Skills {...defaultProps} />)
     
-    const summaryNumbers = container.querySelectorAll('.text-3xl.font-bold.text-blue-600')
+    const summaryNumbers = container.querySelectorAll('.text-4xl.font-bold')
     expect(summaryNumbers.length).toBeGreaterThan(0)
   })
 }) 

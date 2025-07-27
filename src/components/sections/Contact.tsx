@@ -137,8 +137,13 @@ const Contact: React.FC<ContactProps> = ({
   }
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 border-t border-slate-200 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(16,185,129,0.15)_1px,transparent_0)] bg-[length:20px_20px]"></div>
+      </div>
+      <div className="relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <H2 className="mb-4">{title}</H2>
@@ -364,6 +369,7 @@ const Contact: React.FC<ContactProps> = ({
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   )

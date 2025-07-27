@@ -34,7 +34,12 @@ const Projects: React.FC<ProjectsProps> = ({ title, subtitle, projects }) => {
     : projects.filter(project => project.category === filter)
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
+    <section id="projects" className="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 border-t border-slate-200 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.15)_1px,transparent_0)] bg-[length:20px_20px]"></div>
+      </div>
+      <div className="relative z-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -91,6 +96,7 @@ const Projects: React.FC<ProjectsProps> = ({ title, subtitle, projects }) => {
             </Button>
           </div>
         )}
+      </div>
       </div>
     </section>
   )

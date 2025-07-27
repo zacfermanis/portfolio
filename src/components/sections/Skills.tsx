@@ -1,5 +1,25 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react'
 import { H2, H3, P, Card } from '@/components/ui'
+
+// Add CSS for staggered animations
+const skillAnimationStyles = `
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .skill-item-animate {
+    animation: fadeInUp 0.3s ease-out forwards;
+  }
+`
 
 interface SkillCategory {
   category: string
@@ -14,8 +34,21 @@ interface SkillsProps {
 }
 
 const Skills: React.FC<SkillsProps> = ({ title, subtitle, description, skills }) => {
+  const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set())
+
+  const toggleCard = (index: number) => {
+    const newExpandedCards = new Set(expandedCards)
+    if (newExpandedCards.has(index)) {
+      newExpandedCards.delete(index)
+    } else {
+      newExpandedCards.add(index)
+    }
+    setExpandedCards(newExpandedCards)
+  }
+
   return (
     <section id="skills" className="py-20 bg-white">
+      <style dangerouslySetInnerHTML={{ __html: skillAnimationStyles }} />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -30,37 +63,80 @@ const Skills: React.FC<SkillsProps> = ({ title, subtitle, description, skills })
 
         {/* Skills Grid by Category */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skills.map((skillCategory, index) => (
-            <Card key={index} className="h-full">
-              <div className="p-6">
-                <H3 className="mb-6 text-center text-blue-600">{skillCategory.category}</H3>
-                
-                <div className="space-y-3">
-                  {skillCategory.technologies.map((tech, techIndex) => (
-                    <div key={techIndex} className="flex items-center">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                      <span className="text-gray-700 font-medium">{tech}</span>
+          {skills.map((skillCategory, index) => {
+            const isExpanded = expandedCards.has(index)
+            return (
+              <div
+                key={index}
+                className={`cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 ${
+                  isExpanded ? 'ring-2 ring-blue-500 shadow-lg' : 'hover:shadow-md'
+                }`}
+                onClick={() => toggleCard(index)}
+              >
+                <Card className="h-full">
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-6">
+                      <H3 className="text-center text-blue-600 flex-1">{skillCategory.category}</H3>
+                      <div className={`ml-2 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
+                        <svg 
+                          className="w-5 h-5 text-blue-600" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="M19 9l-7 7-7-7" 
+                          />
+                        </svg>
+                      </div>
                     </div>
-                  ))}
-                </div>
+                    
+                    <div className={`relative ${isExpanded ? 'transition-all duration-500 ease-in-out h-auto min-h-24' : 'h-24'}`}>
+                      {/* Skills List - Animated */}
+                      <div 
+                        className={`${isExpanded ? 'transition-all duration-500 ease-in-out opacity-100 transform translate-y-0 relative' : 'opacity-0 transform translate-y-4 pointer-events-none absolute inset-0'}`}
+                      >
+                        <div className="space-y-3">
+                          {skillCategory.technologies.map((tech, techIndex) => (
+                            <div 
+                              key={techIndex} 
+                              className={`flex items-center ${isExpanded ? 'skill-item-animate' : ''}`}
+                              style={{
+                                animationDelay: isExpanded ? `${techIndex * 50}ms` : '0ms'
+                              }}
+                            >
+                              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                              <span className="text-gray-700 font-medium">{tech}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Skill Count - Animated */}
+                      <div 
+                        className={`${isExpanded ? 'transition-all duration-500 ease-in-out opacity-0 transform scale-95 -translate-y-2 pointer-events-none absolute inset-0 flex flex-col justify-center items-center' : 'opacity-100 transform scale-100 translate-y-0 absolute inset-0 flex flex-col justify-center items-center'}`}
+                      >
+                        <div className="text-center text-blue-600">
+                          <div className="text-4xl font-bold mb-1">
+                            {skillCategory.technologies.length}
+                          </div>
+                          <div className="text-sm font-medium">
+                            skills
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
               </div>
-            </Card>
-          ))}
+            )
+          })}
         </div>
 
-        {/* Skills Summary */}
-        <div className="mt-16 text-center">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
-            {skills.map((skillCategory, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">
-                  {skillCategory.technologies.length}
-                </div>
-                <P variant="small" className="text-gray-600">{skillCategory.category}</P>
-              </div>
-            ))}
-          </div>
-        </div>
+
       </div>
     </section>
   )

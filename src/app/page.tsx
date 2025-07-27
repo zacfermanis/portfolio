@@ -3,6 +3,7 @@ import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
 import Projects from '@/components/sections/Projects'
 import Skills from '@/components/sections/Skills'
+import BandSection from '@/components/sections/BandSection'
 import Contact from '@/components/sections/Contact'
 import { heroData, aboutData, projectsData, skillsData, contactData } from '@/data/portfolio'
 
@@ -14,6 +15,7 @@ export default function Home() {
       <Projects {...projectsData} />
       <Skills {...skillsData} />
       <Contact {...contactData} />
+      <BandSection />
     </Layout>
   )
 }

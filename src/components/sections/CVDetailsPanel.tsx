@@ -24,10 +24,12 @@ const CVDetailsPanel: React.FC<CVDetailsPanelProps> = ({
         className={`
           transform transition-all duration-300 ease-in-out delay-100
           ${isExpanded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}
-          mt-6 p-6 pb-8 bg-gray-50 rounded-lg border border-gray-200
+          mt-6 bg-gray-50 border-t border-b border-gray-200
         `}
       >
-        {children}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-8">
+          {children}
+        </div>
       </div>
     </div>
   )

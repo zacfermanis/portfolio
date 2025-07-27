@@ -49,6 +49,17 @@ const Hero: React.FC<HeroProps> = ({
             <H2 className="text-xl md:text-2xl lg:text-3xl text-gray-600 mb-6 font-medium">
               {title}
             </H2>
+            
+            {image && (
+              <div className="mb-8 animate-fade-in-up">
+                <img 
+                  src={image} 
+                  alt={`${name} - ${title}`}
+                  className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 border-white"
+                />
+              </div>
+            )}
+            
             <P variant="lead" className="mb-8 max-w-2xl mx-auto text-lg md:text-xl">
               {description}
             </P>
@@ -71,16 +82,6 @@ const Hero: React.FC<HeroProps> = ({
               </Button>
             </div>
           </div>
-          
-          {image && (
-            <div className="mt-12 animate-fade-in-up">
-              <img 
-                src={image} 
-                alt={`${name} - ${title}`}
-                className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 border-white"
-              />
-            </div>
-          )}
           
           <div className="mt-16 animate-bounce">
             <button
