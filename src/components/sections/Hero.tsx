@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Button, H1, H2, P } from '@/components/ui'
+import { ThreeJSBackground } from '@/components/background'
 
 interface HeroProps {
   name: string
@@ -39,8 +40,9 @@ const Hero: React.FC<HeroProps> = ({
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden">
+      <ThreeJSBackground enabled={true} quality="high" />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           <div className="animate-fade-in">
             <H1 className="mb-4 text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">

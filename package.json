@@ -36,7 +36,8 @@
     "next": "15.4.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "resend": "^4.7.0"
+    "resend": "^4.7.0",
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -49,6 +50,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.160.0",
     "eslint": "^9",
     "eslint-config-next": "15.4.4",
     "jest": "^30.0.5",
