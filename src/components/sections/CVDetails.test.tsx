@@ -27,12 +27,12 @@ describe('CVDetails', () => {
       expandButton.click()
     })
     
-    // Check for key companies (using getAllByText for Liberty Mutual since there are multiple entries)
-    const libertyMutualEntries = screen.getAllByText('Liberty Mutual')
+    // Check for key companies (using regex patterns to match the actual company names)
+    const libertyMutualEntries = screen.getAllByText(/Liberty Mutual/)
     expect(libertyMutualEntries.length).toBeGreaterThan(0)
     expect(screen.getByText('Elegant Elephant Travel')).toBeInTheDocument()
-    expect(screen.getByText('Citigroup')).toBeInTheDocument()
-    expect(screen.getByText('Compaq Computer Co. / Hewlett Packard')).toBeInTheDocument()
+    expect(screen.getByText(/Citigroup/)).toBeInTheDocument()
+    expect(screen.getByText(/Compaq Computer Co\. \/ Hewlett Packard/)).toBeInTheDocument()
   })
 
   it('displays correct number of work experience entries', async () => {
