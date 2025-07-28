@@ -1,8 +1,8 @@
 "use client"
 
-import React, { useEffect, useRef, useCallback } from 'react'
+import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { ThreeJSBackgroundProps, ParticleSettings, COLOR_SCHEMES } from '@/types/particle'
+import { ThreeJSBackgroundProps, COLOR_SCHEMES } from '@/types/particle'
 
 interface AnimationConfig {
   enabled: boolean
@@ -52,8 +52,7 @@ const ThreeJSBackground: React.FC<ThreeJSBackgroundProps> = ({
   enabled = true,
   quality = 'high',
   className = '',
-  settings,
-  onSettingsChange
+  settings
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
@@ -491,7 +490,7 @@ const ThreeJSBackground: React.FC<ThreeJSBackgroundProps> = ({
         scene.clear()
       }
     }
-  }, [config.enabled])
+  }, [config.enabled, config.particleCount])
 
   if (!config.enabled) {
     return null

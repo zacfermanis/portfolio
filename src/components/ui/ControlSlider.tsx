@@ -14,8 +14,7 @@ const ControlSlider: React.FC<ControlSliderProps> = ({
   disabled = false
 }) => {
   const [localValue, setLocalValue] = useState<number>(value);
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-  const timeoutRef = useRef<NodeJS.Timeout | undefined>();
+  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const sliderRef = useRef<HTMLInputElement>(null);
 
   // Update local value when prop changes
@@ -200,10 +199,6 @@ const ControlSlider: React.FC<ControlSliderProps> = ({
             [&::-moz-range-track]:h-2
           `}
           aria-label={`${label} slider`}
-          aria-valuemin={min}
-          aria-valuemax={max}
-          aria-valuenow={localValue}
-          aria-valuetext={formatValue(localValue)}
           role="slider"
           tabIndex={disabled ? -1 : 0}
         />
