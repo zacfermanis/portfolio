@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { H2, H3, P, Button, Icon } from '@/components/ui'
+import { trackContactForm } from '@/lib/analytics'
 
 interface Social {
   linkedin?: string
@@ -110,6 +111,8 @@ const Contact: React.FC<ContactProps> = ({
 
       if (response.ok && result.success) {
         setSubmitStatus('success')
+        // Track successful form submission
+        trackContactForm()
         // Clear form data after successful submission
         setFormData({ name: '', email: '', subject: '', message: '' })
         // Clear any existing errors

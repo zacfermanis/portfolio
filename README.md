@@ -44,6 +44,11 @@ yarn install
    
    Create a `.env.local` file in the root directory with the following content:
    ```bash
+   # Google Analytics Configuration
+   # Get your GA4 Measurement ID from Google Analytics Console
+   # Format: G-XXXXXXXXXX
+   NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+   
    # Resend API Configuration
    # Get your API key from https://resend.com/api-keys
    RESEND_API_KEY=your_resend_api_key_here
@@ -52,7 +57,9 @@ yarn install
    NODE_ENV=development
    ```
    
-   **Important**: You need a Resend API key to test the contact form locally. Sign up at [resend.com](https://resend.com) and verify your domain (zacfermanis.com is already verified for production).
+   **Important**: 
+   - You need a Resend API key to test the contact form locally. Sign up at [resend.com](https://resend.com) and verify your domain (zacfermanis.com is already verified for production).
+   - For Google Analytics, create a GA4 property at [analytics.google.com](https://analytics.google.com) and get your Measurement ID (starts with G-).
 
 4. Start the development server:
 ```bash

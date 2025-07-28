@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Card, H3, P, Button, Icon, Modal } from '@/components/ui'
+import { trackProjectClick } from '@/lib/analytics'
 
 interface Project {
   id: string
@@ -148,6 +149,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 variant="primary"
                 size="small"
                 className="flex-1"
+                onClick={() => trackProjectClick(project.title)}
               >
                 <Icon name="globe" size="small" className="mr-1" />
                 Live Site
@@ -162,6 +164,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 variant="primary"
                 size="small"
                 className="flex-1"
+                onClick={() => trackProjectClick(`${project.title} - NPM`)}
               >
                 <Icon name="npm" size="small" className="mr-1 text-red-600" />
                 NPM
@@ -203,6 +206,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     variant="outline"
                     size="small"
                     className="flex-1"
+                    onClick={() => trackProjectClick(`${project.title} - GitHub`)}
                   >
                     <Icon name="github" size="small" className="mr-1" />
                     Source Code
