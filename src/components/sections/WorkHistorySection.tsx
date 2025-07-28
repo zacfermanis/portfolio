@@ -88,11 +88,11 @@ const WorkExperienceItem: React.FC<WorkExperienceItemProps> = ({
         {/* Expandable content - hidden on mobile when collapsed */}
         <div className={`
           transition-all duration-300 ease-in-out overflow-hidden
-          ${isMobile && !isCardExpanded ? 'max-h-0 opacity-0' : 'max-h-64 opacity-100'}
+          ${isMobile && !isCardExpanded ? 'max-h-0 opacity-0' : isMobile ? 'max-h-64 opacity-100' : 'max-h-none opacity-100'}
         `}>
           {/* Scrollable content container */}
           <div className={`
-            ${isMobile && isCardExpanded ? 'max-h-56 overflow-y-auto pr-2' : ''}
+            ${isMobile && isCardExpanded ? 'max-h-56 overflow-y-auto pr-2' : 'overflow-visible'}
           `}>
             {/* Description */}
             <div className="space-y-2 mb-4">
