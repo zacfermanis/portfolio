@@ -87,6 +87,7 @@ export const projectsData = {
       technologies: ["NPX", "TypeScript", "Agentic Coding", "SPEC Design", "AI/ML", "Memory Management", "Development Tools"],
       liveUrl: "#",
       githubUrl: "https://github.com/zacfermanis/memory-banks",
+      npmUrl: "https://www.npmjs.com/package/@zacfermanis/memory-bank",
       featured: true,
       category: "ai" as const,
       categories: ["ai"] as const

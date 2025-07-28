@@ -9,6 +9,7 @@ interface Project {
   technologies: string[]
   liveUrl?: string
   githubUrl?: string
+  npmUrl?: string
   featured?: boolean
   isPrivate?: boolean
 }
@@ -150,6 +151,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               >
                 <Icon name="globe" size="small" className="mr-1" />
                 Live Site
+              </Button>
+            )}
+            
+            {/* NPM Button - For Memory Bank project */}
+            {project.id === "memory-banks" && project.npmUrl && (
+              <Button
+                href={project.npmUrl}
+                external={true}
+                variant="primary"
+                size="small"
+                className="flex-1"
+              >
+                <Icon name="npm" size="small" className="mr-1 text-red-600" />
+                NPM
               </Button>
             )}
             

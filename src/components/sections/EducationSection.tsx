@@ -16,6 +16,14 @@ const institutionLogos: Record<string, string> = {
 }
 
 const EducationSection: React.FC<EducationSectionProps> = ({ education, firstHeadingRef }) => {
+  // Function to add graphical flare around MS and BS designations
+  const formatDegreeWithFlare = (degree: string) => {
+    return degree.replace(
+      /(MS|BS)/g, 
+      '<span class="inline-flex items-center px-2 py-1 mx-1 bg-gradient-to-r from-sky-600 to-cyan-600 text-white text-xs font-bold rounded-full shadow-lg transform -rotate-1 hover:rotate-0 transition-transform duration-200">$1</span>'
+    )
+  }
+
   if (!education || education.length === 0) {
     return (
       <div className="text-center py-8 text-gray-500">
@@ -60,9 +68,10 @@ const EducationSection: React.FC<EducationSectionProps> = ({ education, firstHea
                   <h4 className="font-medium text-gray-900">
                     {entry.institution}
                   </h4>
-                  <p className="text-gray-700 text-sm">
-                    {entry.degree}
-                  </p>
+                  <p 
+                    className="text-gray-700 text-sm"
+                    dangerouslySetInnerHTML={{ __html: formatDegreeWithFlare(entry.degree) }}
+                  />
                 </div>
               </div>
               <div className="flex items-center justify-between text-sm text-gray-500 mt-4 pt-2 border-t border-gray-100">

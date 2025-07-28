@@ -106,15 +106,15 @@ const About: React.FC<AboutProps> = ({
           {/* Additional Info */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-3xl font-bold text-sky-400 mb-2">20+</div>
+              <div className="text-3xl font-bold text-sky-600 mb-2">20+</div>
               <P variant="small" className="text-gray-600">Years of Experience</P>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-sky-400 mb-2">40+</div>
+              <div className="text-3xl font-bold text-sky-600 mb-2">40+</div>
               <P variant="small" className="text-gray-600">Enterprise Systems</P>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-sky-400 mb-2">$1M+</div>
+              <div className="text-3xl font-bold text-sky-600 mb-2">$1M+</div>
               <P variant="small" className="text-gray-600">Annual Revenue Generated</P>
             </div>
           </div>
@@ -143,7 +143,7 @@ const About: React.FC<AboutProps> = ({
           <div className="space-y-3">
             <button
               onClick={() => handleDownloadResume('pdf')}
-              className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-sky-400 hover:bg-sky-50 transition-all duration-200 group"
+              className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-sky-600 hover:bg-sky-50 transition-all duration-200 group"
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
@@ -154,12 +154,12 @@ const About: React.FC<AboutProps> = ({
                   <div className="text-sm text-gray-500">Best for printing and sharing</div>
                 </div>
               </div>
-              <Icon name="external-link" size="small" className="text-gray-400 group-hover:text-sky-400 transition-colors" />
+              <Icon name="external-link" size="small" className="text-gray-400 group-hover:text-sky-600 transition-colors" />
             </button>
 
             <button
               onClick={() => handleDownloadResume('docx')}
-              className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-sky-400 hover:bg-sky-50 transition-all duration-200 group"
+              className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-sky-600 hover:bg-sky-50 transition-all duration-200 group"
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
@@ -170,12 +170,12 @@ const About: React.FC<AboutProps> = ({
                   <div className="text-sm text-gray-500">Editable format for Microsoft Word</div>
                 </div>
               </div>
-              <Icon name="external-link" size="small" className="text-gray-400 group-hover:text-sky-400 transition-colors" />
+              <Icon name="external-link" size="small" className="text-gray-400 group-hover:text-sky-600 transition-colors" />
             </button>
 
             <button
               onClick={() => handleDownloadResume('rtf')}
-              className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-sky-400 hover:bg-sky-50 transition-all duration-200 group"
+              className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-sky-600 hover:bg-sky-50 transition-all duration-200 group"
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
@@ -186,7 +186,7 @@ const About: React.FC<AboutProps> = ({
                   <div className="text-sm text-gray-500">Rich text format for compatibility</div>
                 </div>
               </div>
-              <Icon name="external-link" size="small" className="text-gray-400 group-hover:text-sky-400 transition-colors" />
+              <Icon name="external-link" size="small" className="text-gray-400 group-hover:text-sky-600 transition-colors" />
             </button>
           </div>
         </div>

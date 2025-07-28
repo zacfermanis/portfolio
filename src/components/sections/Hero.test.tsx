@@ -141,6 +141,6 @@ describe('Hero', () => {
     render(<Hero {...defaultProps} />)
     
     const nameHeading = screen.getByRole('heading', { level: 1 })
-    expect(nameHeading).toHaveClass('bg-gradient-to-r', 'from-sky-400', 'to-cyan-500', 'bg-clip-text', 'text-transparent')
+    expect(nameHeading).toHaveClass('bg-gradient-to-r', 'from-sky-600', 'to-cyan-600', 'bg-clip-text', 'text-transparent')
   })
 }) 

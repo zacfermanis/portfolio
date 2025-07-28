@@ -101,7 +101,7 @@ const Hero: React.FC<HeroProps> = ({
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           <div className="animate-fade-in">
-            <H1 className="mb-4 text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-sky-400 to-cyan-500 bg-clip-text text-transparent">
+            <H1 className="mb-4 text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-sky-600 to-cyan-600 bg-clip-text text-transparent">
               {name}
             </H1>
             <H2 className="text-xl md:text-2xl lg:text-3xl text-gray-600 mb-6 font-medium">
@@ -117,7 +117,7 @@ const Hero: React.FC<HeroProps> = ({
                     w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 
                     transition-all duration-300 cursor-pointer
                     ${isImageHovered 
-                      ? 'border-sky-400 scale-105 shadow-xl' 
+                      ? 'border-sky-600 scale-105 shadow-xl' 
                       : 'border-white'
                     }
                   `}
@@ -142,20 +142,20 @@ const Hero: React.FC<HeroProps> = ({
             </P>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
-                onClick={handleCtaClick}
-                variant="primary" 
-                size="large"
-                className="w-full sm:w-auto"
-              >
-                {ctaText}
-              </Button>
-              <Button 
                 onClick={scrollToNextSection} 
                 variant="outline" 
                 size="large"
                 className="w-full sm:w-auto"
               >
                 Learn More
+              </Button>
+              <Button 
+                onClick={handleCtaClick}
+                variant="primary" 
+                size="large"
+                className="w-full sm:w-auto"
+              >
+                {ctaText}
               </Button>
             </div>
           </div>

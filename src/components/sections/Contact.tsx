@@ -372,7 +372,7 @@ const Contact: React.FC<ContactProps> = ({
       </div>
       
       {/* Scroll Arrow */}
-      <div className="mt-16 animate-bounce">
+      <div className="mt-16 animate-bounce flex justify-center">
         <button
           onClick={() => {
             const bandSection = document.getElementById('band')
@@ -380,11 +380,11 @@ const Contact: React.FC<ContactProps> = ({
               bandSection.scrollIntoView({ behavior: 'smooth' })
             }
           }}
-          className="text-gray-400 hover:text-gray-600 transition-colors"
+          className="text-gray-400 hover:text-gray-600 transition-colors flex items-center justify-center"
           aria-label="Scroll to band section"
         >
           <svg 
-            className="w-6 h-6 mx-auto" 
+            className="w-6 h-6" 
             fill="none"
             stroke="currentColor" 
             viewBox="0 0 24 24"
