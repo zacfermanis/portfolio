@@ -1,7 +1,8 @@
 "use client"
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useCallback } from 'react'
 import * as THREE from 'three'
+import { ThreeJSBackgroundProps, ParticleSettings, COLOR_SCHEMES } from '@/types/particle'
 
 interface AnimationConfig {
   enabled: boolean
@@ -24,11 +25,7 @@ interface AnimationConfig {
   }
 }
 
-interface ThreeJSBackgroundProps {
-  enabled?: boolean
-  quality?: 'low' | 'medium' | 'high'
-  className?: string
-}
+
 
 const defaultConfig: AnimationConfig = {
   enabled: true,
@@ -54,7 +51,9 @@ const defaultConfig: AnimationConfig = {
 const ThreeJSBackground: React.FC<ThreeJSBackgroundProps> = ({
   enabled = true,
   quality = 'high',
-  className = ''
+  className = '',
+  settings,
+  onSettingsChange
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
@@ -62,10 +61,14 @@ const ThreeJSBackground: React.FC<ThreeJSBackgroundProps> = ({
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const animationIdRef = useRef<number | null>(null)
   const particlesRef = useRef<THREE.Points | null>(null)
+  const additionalParticlesRef = useRef<THREE.Points[]>([])
 
   const frameCountRef = useRef(0)
   const mouseRef = useRef({ x: 0, y: 0, isMoving: false })
   const rippleRef = useRef({ x: 0, y: 0, strength: 0, time: 0 })
+  const settingsRef = useRef(settings)
+  
+
 
   // Check for reduced motion preference
   const prefersReducedMotion = typeof window !== 'undefined' 
@@ -82,6 +85,80 @@ const ThreeJSBackground: React.FC<ThreeJSBackgroundProps> = ({
 
   // Debug logging
   console.log('ThreeJSBackground config:', config)
+
+  // Watch for settings changes and apply them
+  useEffect(() => {
+    // Update the settings ref so event handlers can access current settings
+    settingsRef.current = settings;
+    
+    if (settings && particlesRef.current) {
+      console.log('Applying settings changes:', settings);
+      
+      // Apply particle opacity
+      if (settings.particleOpacity !== undefined) {
+        const material = particlesRef.current.material as THREE.PointsMaterial;
+        material.opacity = settings.particleOpacity;
+        material.needsUpdate = true;
+        console.log('Updated opacity to:', settings.particleOpacity);
+      }
+      
+      // Apply particle size
+      if (settings.particleSize !== undefined) {
+        const material = particlesRef.current.material as THREE.PointsMaterial;
+        material.size = settings.particleSize * 10; // Base size is 10
+        material.needsUpdate = true;
+        console.log('Updated size to:', settings.particleSize);
+      }
+      
+      // Apply ripple effect
+      if (settings.rippleEffectEnabled !== undefined) {
+        rippleRef.current.strength = settings.rippleEffectEnabled ? 1.0 : 0;
+      }
+      
+      // Apply color scheme
+      if (settings.colorScheme) {
+        const colorScheme = COLOR_SCHEMES[settings.colorScheme];
+        const primaryColor = settings.customColor || colorScheme.primary;
+        const secondaryColor = colorScheme.secondary;
+        const accentColor = colorScheme.accent;
+        
+        // Update main particle system
+        if (particlesRef.current) {
+          const material = particlesRef.current.material as THREE.PointsMaterial;
+          material.color.setHex(parseInt(primaryColor.replace('#', ''), 16));
+          material.needsUpdate = true;
+        }
+        
+        // Update additional particle systems
+        additionalParticlesRef.current.forEach((particles, index) => {
+          const material = particles.material as THREE.PointsMaterial;
+          let color;
+          switch (index) {
+            case 0: // Light particles
+              color = secondaryColor;
+              break;
+            case 1: // Medium particles  
+              color = primaryColor;
+              break;
+            case 2: // Dark particles
+              color = accentColor;
+              break;
+            default:
+              color = primaryColor;
+          }
+          material.color.setHex(parseInt(color.replace('#', ''), 16));
+          material.needsUpdate = true;
+        });
+        
+        console.log('Updated colors to:', { primary: primaryColor, secondary: secondaryColor, accent: accentColor });
+      }
+      
+      // Apply particle speed (affects animation)
+      if (settings.particleSpeed !== undefined) {
+        // This will be applied in the animation loop
+      }
+    }
+  }, [settings]);
 
   useEffect(() => {
     console.log('ThreeJSBackground useEffect triggered', { enabled: config.enabled, canvasRef: !!canvasRef.current })
@@ -256,6 +333,9 @@ const ThreeJSBackground: React.FC<ThreeJSBackgroundProps> = ({
     scene.add(lightBlueParticles)
     scene.add(darkBlueParticles)
     scene.add(navyParticles)
+    
+    // Store references to additional particle systems for color updates
+    additionalParticlesRef.current = [lightBlueParticles, darkBlueParticles, navyParticles]
 
     // Set up renderer
     const renderer = new THREE.WebGLRenderer({
@@ -294,11 +374,13 @@ const ThreeJSBackground: React.FC<ThreeJSBackgroundProps> = ({
       mouseRef.current.y = y
       mouseRef.current.isMoving = true
       
-      // Create ripple effect
-      rippleRef.current.x = x
-      rippleRef.current.y = y
-      rippleRef.current.strength = 1.0
-      rippleRef.current.time = 0
+      // Create ripple effect (only if enabled in settings)
+      if (settingsRef.current?.rippleEffectEnabled === true) {
+        rippleRef.current.x = x
+        rippleRef.current.y = y
+        rippleRef.current.strength = 1.0
+        rippleRef.current.time = 0
+      }
     }
 
     const handleMouseLeave = () => {
@@ -333,16 +415,19 @@ const ThreeJSBackground: React.FC<ThreeJSBackgroundProps> = ({
         rippleRef.current.strength = Math.max(0, rippleRef.current.strength - 0.02)
       }
 
+      // Get current speed multiplier from settings
+      const speedMultiplier = settingsRef.current?.particleSpeed || 1.0;
+      
       for (let i = 0; i < config.particleCount; i++) {
         const i3 = i * 3
         
-        // Update positions based on velocities
-        positions[i3] += velocities[i3]
-        positions[i3 + 1] += velocities[i3 + 1]
-        positions[i3 + 2] += velocities[i3 + 2]
+        // Update positions based on velocities with speed multiplier
+        positions[i3] += velocities[i3] * speedMultiplier
+        positions[i3 + 1] += velocities[i3 + 1] * speedMultiplier
+        positions[i3 + 2] += velocities[i3 + 2] * speedMultiplier
 
-        // Apply ripple distortion
-        if (rippleRef.current.strength > 0) {
+        // Apply ripple distortion (only if enabled in settings)
+        if (rippleRef.current.strength > 0 && settingsRef.current?.rippleEffectEnabled === true) {
           const particleX = positions[i3] / 35 // Normalize to -1 to 1
           const particleY = positions[i3 + 1] / 35
           

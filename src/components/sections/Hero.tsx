@@ -1,8 +1,11 @@
 "use client"
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, H1, H2, P } from '@/components/ui'
 import { ThreeJSBackground } from '@/components/background'
+import ParticleControlsModal from '@/components/particle-controls/ParticleControlsModal'
+import { loadParticleSettings, saveParticleSettings, resetParticleSettings } from '@/utils/settingsManager'
+import { ParticleSettings } from '@/types/particle'
 
 interface HeroProps {
   name: string
@@ -21,6 +24,54 @@ const Hero: React.FC<HeroProps> = ({
   ctaLink,
   image
 }) => {
+  const [isImageHovered, setIsImageHovered] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [particleSettings, setParticleSettings] = useState<ParticleSettings>({
+    particleCount: 1000,
+    particleSpeed: 1.0,
+    particleSize: 1.0,
+    particleOpacity: 0.4,
+    colorScheme: 'blue',
+    customColor: '#1e40af',
+    quality: 'high',
+    rippleEffectEnabled: true,
+    modalOpen: false
+  });
+
+  // Load settings on component mount
+  useEffect(() => {
+    const settings = loadParticleSettings();
+    setParticleSettings(settings);
+  }, []);
+
+  // Save settings when they change (but not on initial load)
+  useEffect(() => {
+    // Don't save on initial load (when modalOpen is undefined)
+    // Only save if we have a complete settings object
+    if (particleSettings.modalOpen !== undefined && particleSettings.particleCount !== undefined) {
+      saveParticleSettings(particleSettings);
+    }
+  }, [particleSettings]);
+
+  const handleSettingsChange = (updates: Partial<ParticleSettings>) => {
+    const newSettings = { ...particleSettings, ...updates };
+    setParticleSettings(newSettings);
+    
+    // Update modal state
+    if (updates.modalOpen !== undefined) {
+      setIsModalOpen(updates.modalOpen);
+    }
+  };
+
+  const handleReset = () => {
+    const defaultSettings = resetParticleSettings();
+    setParticleSettings(defaultSettings);
+  };
+
+  const handleImageClick = () => {
+    setIsModalOpen(true);
+    handleSettingsChange({ modalOpen: true });
+  };
   const scrollToNextSection = () => {
     const nextSection = document.getElementById('about')
     if (nextSection) {
@@ -41,7 +92,12 @@ const Hero: React.FC<HeroProps> = ({
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 to-cyan-100 relative overflow-hidden">
-      <ThreeJSBackground enabled={true} quality="high" />
+      <ThreeJSBackground 
+        enabled={true} 
+        quality={particleSettings.quality}
+        settings={particleSettings}
+        onSettingsChange={handleSettingsChange}
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           <div className="animate-fade-in">
@@ -57,7 +113,26 @@ const Hero: React.FC<HeroProps> = ({
                 <img 
                   src={image} 
                   alt={`${name} - ${title}`}
-                  className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 border-white"
+                  className={`
+                    w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 
+                    transition-all duration-300 cursor-pointer
+                    ${isImageHovered 
+                      ? 'border-sky-400 scale-105 shadow-xl' 
+                      : 'border-white'
+                    }
+                  `}
+                  onMouseEnter={() => setIsImageHovered(true)}
+                  onMouseLeave={() => setIsImageHovered(false)}
+                  onClick={handleImageClick}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleImageClick();
+                    }
+                  }}
+                  aria-label="Click to open particle background controls"
                 />
               </div>
             )}
@@ -108,6 +183,18 @@ const Hero: React.FC<HeroProps> = ({
           </div>
         </div>
       </div>
+      
+      {/* Particle Controls Modal */}
+      <ParticleControlsModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          handleSettingsChange({ modalOpen: false });
+        }}
+        settings={particleSettings}
+        onSettingsChange={handleSettingsChange}
+        onReset={handleReset}
+      />
     </section>
   )
 }

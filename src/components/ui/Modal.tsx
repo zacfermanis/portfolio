@@ -53,9 +53,9 @@ const Modal: React.FC<ModalProps> = ({
       className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
       onClick={handleBackdropClick}
     >
-      <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[85vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
           {showCloseButton && (
             <button
@@ -69,14 +69,14 @@ const Modal: React.FC<ModalProps> = ({
         </div>
         
         {/* Content */}
-        <div className="p-6">
+        <div className="p-4">
           {children}
         </div>
         
         {/* Footer */}
-        <div className="flex justify-end p-6 border-t border-gray-200">
-          <Button onClick={onClose} variant="primary" size="small">
-            Close
+        <div className="flex justify-end p-4 border-t border-gray-200">
+          <Button onClick={onClose} variant="primary" size="medium" className="flex-1">
+            Save
           </Button>
         </div>
       </div>
