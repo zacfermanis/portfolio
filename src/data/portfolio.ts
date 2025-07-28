@@ -176,11 +176,10 @@ export const cvData = {
   workExperience: [
     {
       yearRange: "2017-Present",
-      company: "Liberty Mutual",
+      company: "Liberty Mutual | Corporate Functions - Talent and Enterprise Services",
       location: "Remote",
       title: "Solutions Engineer",
       description: [
-        "Corporate Functions - Talent and Enterprise Services",
         "Named Corporate Functions AI Champion, advising Senior Leadership and Enterprise Architecture on AI strategy and implementation",
         "Established best practices and security guidelines for Agentic Coding, including creation of multiple MCP servers to accelerate application development",
         "Provided architectural support for Talent and Enterprise Services, a department of 150+ engineers",
@@ -199,27 +198,22 @@ export const cvData = {
     {
       yearRange: "2016-Present",
       company: "Elegant Elephant Travel",
-      location: "Remote",
+      location: "North Carolina",
       title: "Chief Technology Officer - CoFounder",
       description: [
         "Oversaw all technical operations and strategy, enabling $1M+ in annual revenue with lean infrastructure footprint of less than $5K in annual operating costs",
         "Designed and developed high-performance, SEO-optimized eCommerce website with full social media integration: elegantelephanttravel.com",
         "Built and integrated automated workflows using TravelJoy.com APIs and additional travel CRM/portal tools to streamline client and itinerary management",
-        "Created and deployed multiple AI-driven automation tools including:",
-        "  • Automated Daily Email Summarizer",
-        "  • Follow-Up Detection System", 
-        "  • 'Ask My Inbox' natural language inbox assistant",
-        "  • Itinerary Validator for catching typographical, logistical, and geographical errors in 3rd-party vendor documents"
+        "Created and deployed multiple AI-driven automation tools including: \r\n• Automated Daily Email Summarizer\r\n• Follow-Up Detection System\r\n• 'Ask My Inbox' natural language inbox assistant\r\n• Itinerary Validator for catching typographical, logistical, and geographical errors in 3rd-party vendor documents"
       ],
       technologies: ["React", "Node.js", "PostgreSQL", "AWS", "AI/ML", "Stripe API", "OpenAI API", "SEO", "eCommerce", "Automation"]
     },
     {
       yearRange: "2012-2017",
-      company: "Liberty Mutual",
+      company: "Liberty Mutual | Enterprise Technology Services - Security Delivery",
       location: "Dover, NH",
       title: "Principal Software Engineer",
       description: [
-        "Enterprise Technology Services - Security Delivery",
         "Led architecture, design, development, system administration, and release engineering for a portfolio of 5 enterprise-wide systems and 35+ supporting applications",
         "Supported high-scale J2EE n-tier applications serving 5M+ customer accounts and 50K+ employee identities across the organization",
         "Reduced release cycle overhead by over 60% by scripting and automating previously manual deployment and maintenance tasks",
@@ -230,11 +224,10 @@ export const cvData = {
     },
     {
       yearRange: "2010-2012",
-      company: "Liberty Mutual",
+      company: "Liberty Mutual | Products & Distribution Applications Development",
       location: "Dover, NH",
       title: "Software Developer",
       description: [
-        "Products & Distribution Applications Development",
         "Contributed to successful release of refactored Auto Insurance sales platform (GEARS), serving as jQuery Subject Matter Expert (SME) for front-end team",
         "Served as lead developer and UI/UX designer for Personal Liability Protection (PLP) sales application, a high-visibility initiative within the organization",
         "Collaborated in enterprise Java environment using IBM Rational Application Developer (RAD) and Rational Team Concert (RTC) for development and source control"
@@ -243,11 +236,10 @@ export const cvData = {
     },
     {
       yearRange: "2005-2010",
-      company: "Citigroup",
+      company: "Citigroup | Applications Development",
       location: "Boston, MA",
       title: "Senior Programmer Analyst",
       description: [
-        "Applications Development",
         "Led multiple integration initiatives under Model Office (AIS Portal) program to onboard newly acquired Bisys Group into Citi's infrastructure, including upgrading and re-engineering several .NET/ASP applications to align with Citi's Information Security Standards and enterprise policies",
         "Served as Lead Developer for XSP (SWIFT/FPML) processing projects at CDIL, implementing SWIFT API using Java/J2EE and acting as Subject Matter Expert (SME) for integration workflows",
         "Led all trade processing and reporting integrations for BGI (Barclays Global Investors), delivering scalable Java/J2EE and .NET applications using SWIFT, MQ, and SQL",
@@ -257,11 +249,10 @@ export const cvData = {
     },
     {
       yearRange: "2000-2002",
-      company: "Compaq Computer Co. / Hewlett Packard",
+      company: "Compaq Computer Co. / Hewlett Packard | StorageWorks - SANSOFT",
       location: "Shrewsbury, MA",
       title: "Quality Assurance Engineer",
       description: [
-        "StorageWorks - SANSOFT",
         "Designed and executed network testing scripts for high-availability SAN systems",
         "Tested across IBM Shark/DS4400, Solaris, Red Hat Linux, and Windows Server",
         "Utilized Fibre Channel connections for multi-platform validation",

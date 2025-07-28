@@ -72,18 +72,18 @@ const WorkExperienceItem: React.FC<WorkExperienceItemProps> = ({
       >
         {/* Header - always visible */}
         <div className="mb-3">
-          <h4 className="text-lg font-semibold text-gray-900">
-            {entry.title}
-          </h4>
+          <div className="flex justify-between items-start mb-2">
+            <h4 className="text-lg font-semibold text-gray-900">
+              {entry.title}
+            </h4>
+            <p className="text-sm text-gray-600">
+              📍 {entry.location}
+            </p>
+          </div>
           <p className="text-sky-600 font-medium">
             {entry.company}
           </p>
         </div>
-        
-        {/* Location - always visible */}
-        <p className="text-sm text-gray-600 mb-3">
-          📍 {entry.location}
-        </p>
         
         {/* Expandable content - hidden on mobile when collapsed */}
         <div className={`
