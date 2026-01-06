@@ -34,7 +34,7 @@
     "@next/third-parties": "^15.4.4",
     "@zacfermanis/memory-bank": "^1.0.0",
     "critters": "^0.0.23",
-    "next": "15.4.4",
+    "next": "15.4.10",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "resend": "^4.7.0",
